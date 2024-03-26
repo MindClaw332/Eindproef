@@ -9,8 +9,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] GameObject attackEffectPrefab;
     [SerializeField] float attackTravelSpeed = 1f;
 
+    Vector3 oldPosition;
+
     Game_Manager gm;
-    void Start()
+    void Awake()
     {
         gm = Game_Manager.instance;
     }
@@ -23,12 +25,16 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    void LateUpdate()
+    {
+        oldPosition = transform.position;
+    }
+
     void Attack()
     {
         GameObject attack;
         attack = Instantiate(attackEffectPrefab, attackSpawn.transform.position, Quaternion.identity);
-        print("attack spawned" + attack.GetComponent<Rigidbody2D>());
-        attack.GetComponent<Rigidbody2D>().velocity = new Vector2(attackTravelSpeed * DirectionAttack(), 0f);
+        attack.GetComponent<Rigidbody2D>().velocity = new Vector2(attackTravelSpeed * DirectionAttack() + calculateVelocity().x, 0f);
         attack.transform.localScale = new Vector3(DirectionAttack(), 1f, 1f);
         print("attack velocity" + attack.GetComponent<Rigidbody2D>().velocity);
         Destroy(attack, 0.2f);
@@ -42,5 +48,10 @@ public class PlayerAttack : MonoBehaviour
         }
         else
             return 1f;
+    }
+
+    Vector3 calculateVelocity()
+    {
+        return (transform.position - oldPosition) / Time.deltaTime;
     }
 }

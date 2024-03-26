@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RandomBrushGrass
   m_EditorClassIdentifier: 
   m_Cells:
-  - m_Tile: {fileID: 0}
+  - m_Tile: {fileID: 11400000, guid: 54ee899c83daf8e4fab5b85b203f08cc, type: 2}
     m_Matrix:
       e00: 1
       e01: 0
@@ -32,12 +32,182 @@ MonoBehaviour:
       e32: 0
       e33: 1
     m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Pivot: {x: 0, y: 0, z: 0}
+  - m_Tile: {fileID: 11400000, guid: 66444446e81dad240a66db2130f4278f, type: 2}
+    m_Matrix:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_Color: {r: 1, g: 1, b: 1, a: 1}
+  - m_Tile: {fileID: 11400000, guid: e955aa2737167fa4f972e2e18b0275b9, type: 2}
+    m_Matrix:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_Color: {r: 1, g: 1, b: 1, a: 1}
+  - m_Tile: {fileID: 11400000, guid: 109e4bb92af2e144d9e3641ce8339242, type: 2}
+    m_Matrix:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_Color: {r: 1, g: 1, b: 1, a: 1}
+  - m_Tile: {fileID: 11400000, guid: eae1c2b4a8f5c8c49b53c92b804b957d, type: 2}
+    m_Matrix:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_Color: {r: 1, g: 1, b: 1, a: 1}
+  - m_Tile: {fileID: 11400000, guid: afc58c54194478c4d98d86fd3abe9533, type: 2}
+    m_Matrix:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_Color: {r: 1, g: 1, b: 1, a: 1}
+  - m_Tile: {fileID: 11400000, guid: 8aa1b3c23d2bbc3448f5ccbf83e5207f, type: 2}
+    m_Matrix:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_Color: {r: 1, g: 1, b: 1, a: 1}
+  - m_Tile: {fileID: 11400000, guid: b3a53eb9d49f9794fb332b99e41dcb10, type: 2}
+    m_Matrix:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_Color: {r: 1, g: 1, b: 1, a: 1}
+  - m_Tile: {fileID: 11400000, guid: 29bd408ae9cfb2c409eac3dfd78346c0, type: 2}
+    m_Matrix:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Size: {x: 3, y: 3, z: 1}
+  m_Pivot: {x: 2, y: 0, z: 0}
   m_CanChangeZPosition: 0
   m_FloodFillContiguousOnly: 1
   randomTileSetSize: {x: 1, y: 1, z: 1}
-  randomTileSets: []
+  randomTileSets:
+  - randomTiles:
+    - {fileID: 11400000, guid: 54ee899c83daf8e4fab5b85b203f08cc, type: 2}
+  - randomTiles:
+    - {fileID: 11400000, guid: 66444446e81dad240a66db2130f4278f, type: 2}
+  - randomTiles:
+    - {fileID: 11400000, guid: e955aa2737167fa4f972e2e18b0275b9, type: 2}
+  - randomTiles:
+    - {fileID: 11400000, guid: 109e4bb92af2e144d9e3641ce8339242, type: 2}
+  - randomTiles:
+    - {fileID: 11400000, guid: eae1c2b4a8f5c8c49b53c92b804b957d, type: 2}
+  - randomTiles:
+    - {fileID: 11400000, guid: afc58c54194478c4d98d86fd3abe9533, type: 2}
+  - randomTiles:
+    - {fileID: 11400000, guid: 8aa1b3c23d2bbc3448f5ccbf83e5207f, type: 2}
+  - randomTiles:
+    - {fileID: 11400000, guid: b3a53eb9d49f9794fb332b99e41dcb10, type: 2}
+  - randomTiles:
+    - {fileID: 11400000, guid: 29bd408ae9cfb2c409eac3dfd78346c0, type: 2}
   randomTileChangeDataSets: []
-  pickRandomTiles: 0
+  pickRandomTiles: 1
   addToRandomTiles: 0
