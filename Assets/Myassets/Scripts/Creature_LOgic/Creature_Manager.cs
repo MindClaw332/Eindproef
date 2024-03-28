@@ -35,15 +35,13 @@ public class Creature_Manager : MonoBehaviour
     void Start()
     {
         SetCurrentCreature(possibleCreatures[0]);
-        currentCreature.creatureName = "test";
         currentCreature.creatureSprite = testSprite;
         creatureImage.sprite = currentCreature.creatureSprite;
-        Train();
     }
 
     public void Train()
     {
-        if (currentCreature.stressLevel <= 5) ChangeStat(SelectRandomStat(3), RaiseOrLowerStat(currentCreature.stressLevel));
+        if (currentCreature.stressLevel < 5) ChangeStat(SelectRandomStat(3), RaiseOrLowerStat(currentCreature.stressLevel));
     }
 
     void ChangeStat(int _statID, int _value)
@@ -101,7 +99,72 @@ public class Creature_Manager : MonoBehaviour
             default:
                 return 0;
         }
-    } 
+    }
 
+    public void evolve()
+    {
+        SetCurrentCreature(FindEvolution(DecideEvolution()));
+    }
 
+    int DecideEvolution()
+    {
+        print(currentCreature.evolutionStage);
+        switch (currentCreature.evolutionStage)
+        {
+            case 1:
+                if (currentCreature.defence >= currentCreature.attack)
+                {
+                    print(currentCreature.id + 1);
+                    return currentCreature.id + 1;
+                }
+                else
+                {
+                    print(currentCreature.id + 2);
+                    return currentCreature.id + 2;
+                }
+            case 2:
+                if (currentCreature.sourFruitEaten >= currentCreature.sweetFruitEaten)
+                {
+                    print(currentCreature.id + 10);
+                    return currentCreature.id + 10;
+                }
+                else
+                {
+                    print(currentCreature.id + 20);
+                    return currentCreature.id + 20;
+                }
+            case 3:
+                if (currentCreature.stressLevel >= 3)
+                {
+                    print(currentCreature.id + 100);
+                    return currentCreature.id + 100;
+                }
+                else
+                {
+                    print(currentCreature.id + 200);
+                    return currentCreature.id + 200;
+                };
+            case 4:
+                Debug.Log("fully evolved");
+                return currentCreature.id;
+            default:
+                Debug.Log("no evolution stage found");
+                return 0;
+        }
+    }
+
+    Creature_SO FindEvolution(int _id)
+    {
+        Creature_SO _correctEvolution = null;
+        for (int i = 0; i < possibleCreatures.Length; i++)
+        {
+            if (possibleCreatures[i].id == _id)
+            {
+                _correctEvolution = possibleCreatures[i];
+                print("evolution has been set to " + _correctEvolution.creatureName);
+            }
+        }
+        if (_correctEvolution == null) { Debug.Log("for loop kaput"); }
+        return _correctEvolution;
+    }
 }

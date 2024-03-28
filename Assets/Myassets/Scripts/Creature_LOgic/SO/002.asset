@@ -10,13 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a22707b8648fce14893e4170584d5029, type: 3}
-  m_Name: Creature_000
+  m_Name: 002
   m_EditorClassIdentifier: 
-  creatureName: Creature
-  id: 0
+  creatureName: attack
+  id: 2
+  evolutionStage: 2
   currentHealth: 5
   maxHealth: 5
   attack: 5
   defence: 5
   stressLevel: 0
+  maxStressLevel: 5
+  sourFruitEaten: 0
+  sweetFruitEaten: 0
   creatureSprite: {fileID: 0}
