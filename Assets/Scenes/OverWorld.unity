@@ -1909,6 +1909,7 @@ MonoBehaviour:
   attackSpawn: {fileID: 500528256}
   attackEffectPrefab: {fileID: 4992758360618357760, guid: 73766a288e5a00b4fa7b46ef8b269fbc, type: 3}
   attackTravelSpeed: 1
+  gm: {fileID: 1507238157}
 --- !u!1 &1475089101
 GameObject:
   m_ObjectHideFlags: 0

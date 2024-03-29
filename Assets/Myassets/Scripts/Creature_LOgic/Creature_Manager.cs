@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +8,18 @@ public class Creature_Manager : MonoBehaviour
     public Creature_SO currentCreature;
     public Sprite testSprite;
     [SerializeField] Image creatureImage;
+    public Inventory inventory;
+    [SerializeField] int sourFruitEaten;
+    [SerializeField] int sweetFruitEaten;
 
+    // instantiates a scriptable object for the current creature
     public void SetCurrentCreature(Creature_SO _creature)
     {
         var clone = Instantiate(_creature);
         currentCreature = clone;
     }
 
+    //singleton pattern
     void Awake()
     {
         if (instance == null)
@@ -34,16 +35,60 @@ public class Creature_Manager : MonoBehaviour
 
     void Start()
     {
+        inventory = Inventory.instance;
         SetCurrentCreature(possibleCreatures[0]);
         currentCreature.creatureSprite = testSprite;
         creatureImage.sprite = currentCreature.creatureSprite;
     }
 
+    //raises or lowers stats based on the creature's stress level and caps it when at maximum stress
     public void Train()
     {
         if (currentCreature.stressLevel < 5) ChangeStat(SelectRandomStat(3), RaiseOrLowerStat(currentCreature.stressLevel));
     }
 
+    // evolves the creature
+    public void evolve()
+    {
+        if (currentCreature.evolutionStage < 4) SetCurrentCreature(FindEvolution(DecideEvolution()));
+        creatureImage.sprite = currentCreature.creatureSprite;
+    }
+
+    // feeds the creature
+    public void Feed(Item_SO _item)
+    {
+        if (inventory.items.Contains(_item))
+        {
+            switch (_item.itemTaste)
+            {
+                case Item_SO.Taste.sour:
+                    sourFruitEaten++;
+                    break;
+                case Item_SO.Taste.sweet:
+                    sweetFruitEaten++;
+                    break;
+            }
+            inventory.RemoveItem(_item);
+            Heal();
+        }
+        else
+        {
+            print("no item found in inventory");
+        }
+
+    }
+
+    void Heal()
+    {
+        int _healamount = currentCreature.maxHealth / 5;
+        currentCreature.currentHealth += _healamount;
+        if (currentCreature.currentHealth >= currentCreature.maxHealth)
+        {
+            print("" + currentCreature.name + " is fully healed");
+            currentCreature.currentHealth = currentCreature.maxHealth;
+        }
+    }
+    //changes stat and stress
     void ChangeStat(int _statID, int _value)
     {
         switch (_statID)
@@ -65,11 +110,13 @@ public class Creature_Manager : MonoBehaviour
         }
     }
 
+    //selects a random stat
     int SelectRandomStat(int _amountOfStats)
     {
         return Random.Range(0, _amountOfStats - 1);
     }
 
+    // decides if the stat should be raised or lowered
     int RaiseOrLowerStat(int _stresslevel)
     {
         int percentRoll = Random.Range(0, 10);
@@ -84,6 +131,7 @@ public class Creature_Manager : MonoBehaviour
 
     }
 
+    // gets creature stat for other scripts so you cant change it from other scripts
     public int getStat(int _statID)
     {
         switch (_statID)
@@ -101,11 +149,9 @@ public class Creature_Manager : MonoBehaviour
         }
     }
 
-    public void evolve()
-    {
-        SetCurrentCreature(FindEvolution(DecideEvolution()));
-    }
 
+
+    // decides the next evolution for the creature by creating an id
     int DecideEvolution()
     {
         print(currentCreature.evolutionStage);
@@ -123,7 +169,7 @@ public class Creature_Manager : MonoBehaviour
                     return currentCreature.id + 2;
                 }
             case 2:
-                if (currentCreature.sourFruitEaten >= currentCreature.sweetFruitEaten)
+                if (sourFruitEaten >= sweetFruitEaten)
                 {
                     print(currentCreature.id + 10);
                     return currentCreature.id + 10;
@@ -153,6 +199,7 @@ public class Creature_Manager : MonoBehaviour
         }
     }
 
+    // finds the correct evolution for the creature based on the id
     Creature_SO FindEvolution(int _id)
     {
         Creature_SO _correctEvolution = null;

@@ -11,7 +11,7 @@ public class PlayerAttack : MonoBehaviour
 
     Vector3 oldPosition;
 
-    Game_Manager gm;
+    [SerializeField] Game_Manager gm;
     void Awake()
     {
         gm = Game_Manager.instance;
@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
 
     float DirectionAttack()
     {
-        if (gm.GetFlipped() == true)
+        if (Game_Manager.instance.GetFlipped() == true)
         {
             return -1f;
         }

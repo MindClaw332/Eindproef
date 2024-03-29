@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32dc72a4ee5c761449524a25252ed2dd, type: 3}
-  m_Name: Fruit
+  m_Name: Sour_Fruit
   m_EditorClassIdentifier: 
-  itemName: Fruit
+  itemName: sour_fruit
   prefab: {fileID: 0}
   sprite: {fileID: 0}
-  amount: 3
-  itemTaste: 0
+  amount: 1
+  itemTaste: 1
