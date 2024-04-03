@@ -25,7 +25,7 @@ public class Creature_Debug : MonoBehaviour
         creatureAttack = Creature_Manager.instance.getStat(1);
         creatureDefence = Creature_Manager.instance.getStat(2);
         creatureStress = Creature_Manager.instance.getStat(3);
-        creatureEvolutionstage = Creature_Manager.instance.currentCreature.evolutionStage;
+        creatureEvolutionstage = Creature_Manager.instance.getStat(5);
 
     }
 }

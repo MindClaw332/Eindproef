@@ -6,7 +6,7 @@ public class Creature_Manager : MonoBehaviour
     public static Creature_Manager instance;
     public Creature_SO[] possibleCreatures;
     public Creature_SO currentCreature;
-    public Sprite testSprite;
+    //public Sprite testSprite;
     [SerializeField] Image creatureImage;
     public Inventory inventory;
     [SerializeField] int sourFruitEaten;
@@ -31,14 +31,15 @@ public class Creature_Manager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        SetCurrentCreature(possibleCreatures[0]);
     }
 
     void Start()
     {
         inventory = Inventory.instance;
-        SetCurrentCreature(possibleCreatures[0]);
-        currentCreature.creatureSprite = testSprite;
-        creatureImage.sprite = currentCreature.creatureSprite;
+
+        //creatureImage.sprite = currentCreature.creatureSprite;
     }
 
     //raises or lowers stats based on the creature's stress level and caps it when at maximum stress
@@ -144,6 +145,10 @@ public class Creature_Manager : MonoBehaviour
                 return currentCreature.defence;
             case 3:
                 return currentCreature.stressLevel;
+            case 4:
+                return currentCreature.currentHealth;
+            case 5:
+                return currentCreature.evolutionStage;
             default:
                 return 0;
         }
@@ -200,7 +205,7 @@ public class Creature_Manager : MonoBehaviour
     }
 
     // finds the correct evolution for the creature based on the id
-    Creature_SO FindEvolution(int _id)
+    public Creature_SO FindEvolution(int _id)
     {
         Creature_SO _correctEvolution = null;
         for (int i = 0; i < possibleCreatures.Length; i++)

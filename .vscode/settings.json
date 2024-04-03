@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "VDO_IGD_Eindproef_Creature.sln"
+    "dotnet.defaultSolution": "vdo_igd_eindproef.sln"
 }
