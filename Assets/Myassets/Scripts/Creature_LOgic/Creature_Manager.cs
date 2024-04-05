@@ -19,6 +19,8 @@ public class Creature_Manager : MonoBehaviour
         currentCreature = clone;
     }
 
+
+
     //singleton pattern
     void Awake()
     {
@@ -31,8 +33,8 @@ public class Creature_Manager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-
         SetCurrentCreature(possibleCreatures[0]);
+        //SetEnemy(FindEvolution(SelectEnemyCreature()));
     }
 
     void Start()
@@ -213,10 +215,12 @@ public class Creature_Manager : MonoBehaviour
             if (possibleCreatures[i].id == _id)
             {
                 _correctEvolution = possibleCreatures[i];
-                print("evolution has been set to " + _correctEvolution.creatureName);
+                //print("evolution has been set to " + _correctEvolution.creatureName);
             }
         }
         if (_correctEvolution == null) { Debug.Log("for loop kaput"); }
         return _correctEvolution;
     }
+
+
 }

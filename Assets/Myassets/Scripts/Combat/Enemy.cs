@@ -2,77 +2,69 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
     public Creature_Manager creatureManager;
     public Creature_SO enemyCreature;
+    public Combat_UI combatUI;
+    [SerializeField] UnityEvent OnEnemyInit;
 
     void Awake()
     {
-        creatureManager = creatureManager.GetComponent<Creature_Manager>();
-        if (creatureManager == null) print("tis voor morgen");
-        var clone = Instantiate(creatureManager.FindEvolution(SelectEnemyCreature()));
-        enemyCreature = clone;
-        print(enemyCreature.creatureName);
-        print(enemyCreature.maxHealth);
-        print(enemyCreature.attack);
-        print(enemyCreature.defence);
-        print(enemyCreature.stressLevel);
+        
+        creatureManager = Creature_Manager.instance;
+        if (creatureManager == null) Debug.LogError("Creature manager not found");
+        SetEnemy(creatureManager.FindEvolution(SelectEnemyCreature()));
+    }
+
+
+    void Start()
+    {
+        OnEnemyInit.Invoke();
+    }
+
+    void Update()
+    {
 
     }
 
     private int SelectEnemyCreature()
     {
         int creatureIndex;
-        switch (Creature_Manager.instance.currentCreature.evolutionStage)
+        print("hier werkt ie");
+        print(creatureManager.currentCreature.evolutionStage);
+        switch (creatureManager.currentCreature.evolutionStage)
         {
             case 1:
-                creatureIndex = Random.Range(1, 2);
+                creatureIndex = Random.Range(1, 3);
+                print(creatureIndex + "random index");
                 return creatureIndex;
             case 2:
-                creatureIndex = Random.Range(1, 2);
+                creatureIndex = Random.Range(1, 3);
+                print(creatureIndex + "random index");
                 return creatureIndex;
             case 3:
-                creatureIndex = Random.Range(1, 2) + Random.Range(1, 2) * 10;
+                creatureIndex = Random.Range(1, 3) + Random.Range(1, 3) * 10;
+                print(creatureIndex + "random index");
                 return creatureIndex;
             case 4:
-                creatureIndex = Random.Range(1, 2) + Random.Range(1, 2) * 10 + Random.Range(1, 2) * 100;
+                creatureIndex = Random.Range(1, 3) + Random.Range(1, 3) * 10 + Random.Range(1, 3) * 100;
+                print(creatureIndex + "random index");
                 return creatureIndex;
             default:
                 creatureIndex = 0;
+                print(creatureIndex + "random index");
                 return creatureIndex;
 
         }
     }
 
-    public int getStat(int _statID)
+    public void SetEnemy(Creature_SO _creature)
     {
-        switch (_statID)
-        {
-            case 0:
-                return enemyCreature.maxHealth;
-            case 1:
-                return enemyCreature.attack;
-            case 2:
-                return enemyCreature.defence;
-            case 3:
-                return enemyCreature.stressLevel;
-            case 4:
-                return enemyCreature.currentHealth;
-            default:
-                return 0;
-        }
-    }
-    void Start()
-    {
-        print(enemyCreature.id);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        var clone = Instantiate(_creature);
+        enemyCreature = clone;
     }
 }

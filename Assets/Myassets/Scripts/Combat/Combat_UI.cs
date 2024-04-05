@@ -18,21 +18,24 @@ public class Combat_UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //playerImage.sprite = creatureManager.currentCreature.creatureSprite;
-        //enemyImage.sprite = enemy.enemyCreature.creatureSprite;
-        playerHealthText.SetText(Creature_Manager.instance.currentCreature.currentHealth.ToString() + "/" + Creature_Manager.instance.currentCreature.maxHealth.ToString());
-        playerHealthSlider.maxValue = creatureManager.getStat(0);
-        playerHealthSlider.value = creatureManager.getStat(4);
 
-        enemyHealthText.SetText(enemy.getStat(4).ToString() + "/" + enemy.getStat(0).ToString());
-        enemyHealthSlider.maxValue = enemy.getStat(0);
-        enemyHealthSlider.value = enemy.getStat(4);
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    public void UpdateUI()
+    {
+        playerHealthText.text = creatureManager.currentCreature.currentHealth.ToString() + "/" + creatureManager.currentCreature.maxHealth.ToString();
+        enemyHealthText.text = enemy.enemyCreature.currentHealth.ToString() + "/" + enemy.enemyCreature.maxHealth.ToString();
+        playerHealthSlider.maxValue = creatureManager.currentCreature.maxHealth;
+        enemyHealthSlider.maxValue = enemy.enemyCreature.maxHealth;
         
+        playerHealthSlider.value = creatureManager.currentCreature.currentHealth;
+        enemyHealthSlider.value = enemy.enemyCreature.currentHealth;
     }
 }

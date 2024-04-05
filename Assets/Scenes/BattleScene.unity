@@ -797,13 +797,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creatureManager: {fileID: 1896645787}
-  enemy: {fileID: 951516942}
+  enemy: {fileID: 0}
   playerImage: {fileID: 278949844}
   enemyImage: {fileID: 1670309819}
   playerHealthText: {fileID: 587235474}
   enemyHealthText: {fileID: 1817125459}
   playerHealthSlider: {fileID: 83608256}
-  enemyHealthSlider: {fileID: 0}
+  enemyHealthSlider: {fileID: 1997676747}
 --- !u!1 &798115792
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,52 +881,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798115792}
   m_CullTransparentMesh: 1
---- !u!1 &951516941
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 951516943}
-  - component: {fileID: 951516942}
-  m_Layer: 0
-  m_Name: Enemy_Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &951516942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951516941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ca430599150dc04687f14e6ccf71a9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creatureManager: {fileID: 1896645787}
-  enemyCreature: {fileID: 0}
---- !u!4 &951516943
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 951516941}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 948.4673, y: 728.1256, z: -9.841535}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1230433025
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,6 +1563,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6292ac662529c354cb033be2e09842d8, type: 2}
   - {fileID: 11400000, guid: e7ab952548106874f9e0f1df0bab7d84, type: 2}
   currentCreature: {fileID: 0}
+  nextEnemy: {fileID: 0}
   creatureImage: {fileID: 0}
   inventory: {fileID: 1230433026}
   sourFruitEaten: 0
@@ -1831,5 +1786,4 @@ SceneRoots:
   - {fileID: 1451254721}
   - {fileID: 679626935}
   - {fileID: 2137221900}
-  - {fileID: 951516943}
   - {fileID: 1230433027}
