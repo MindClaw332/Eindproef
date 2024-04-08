@@ -9,7 +9,7 @@ public class Item_SO : ScriptableObject
 public string itemName;
 public GameObject prefab;
 public Sprite sprite;
-public int amount;
+public int amount = 0;
 public enum Taste { sweet, sour };
 public Taste itemTaste;
 }

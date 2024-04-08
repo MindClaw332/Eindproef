@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22707b8648fce14893e4170584d5029, type: 3}
+  m_Name: 001
+  m_EditorClassIdentifier: 
+  creatureName: defence
+  id: 1
+  evolutionStage: 2
+  currentHealth: 5
+  maxHealth: 5
+  attack: 5
+  defence: 5
+  stressLevel: 0
+  maxStressLevel: 5
+  sourFruitEaten: 0
+  sweetFruitEaten: 0
+  creatureSprite: {fileID: 0}
