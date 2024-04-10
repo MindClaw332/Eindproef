@@ -34,6 +34,8 @@ public class Combat_UI : MonoBehaviour
         enemyHealthText.text = enemy.enemyCreature.currentHealth.ToString() + "/" + enemy.enemyCreature.maxHealth.ToString();
         playerHealthSlider.maxValue = creatureManager.currentCreature.maxHealth;
         enemyHealthSlider.maxValue = enemy.enemyCreature.maxHealth;
+        playerImage.sprite = creatureManager.currentCreature.creatureSprite;
+        enemyImage.sprite = enemy.enemyCreature.creatureSprite;
         
         playerHealthSlider.value = creatureManager.currentCreature.currentHealth;
         enemyHealthSlider.value = enemy.enemyCreature.currentHealth;

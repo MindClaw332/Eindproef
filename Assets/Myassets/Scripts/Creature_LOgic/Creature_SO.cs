@@ -20,5 +20,7 @@ public class Creature_SO : ScriptableObject
     public int sourFruitEaten = 0;
     public int sweetFruitEaten = 0;
 
+    public int currentLevel = 0;
+
     public Sprite creatureSprite;
 }

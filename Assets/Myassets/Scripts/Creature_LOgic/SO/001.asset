@@ -15,12 +15,12 @@ MonoBehaviour:
   creatureName: defence
   id: 1
   evolutionStage: 2
-  currentHealth: 5
-  maxHealth: 5
-  attack: 5
-  defence: 5
+  currentHealth: 11
+  maxHealth: 11
+  attack: 8
+  defence: 13
   stressLevel: 0
   maxStressLevel: 5
   sourFruitEaten: 0
   sweetFruitEaten: 0
-  creatureSprite: {fileID: 0}
+  creatureSprite: {fileID: -332675378, guid: 6637e5e45594b764699e8e6dd4428bd3, type: 3}

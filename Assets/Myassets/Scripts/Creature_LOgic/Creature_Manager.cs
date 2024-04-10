@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Creature_Manager : MonoBehaviour
@@ -11,6 +12,8 @@ public class Creature_Manager : MonoBehaviour
     public Inventory inventory;
     [SerializeField] int sourFruitEaten;
     [SerializeField] int sweetFruitEaten;
+    [SerializeField] int currentLevel;
+    [SerializeField] UnityEvent UpdateUi;
 
     // instantiates a scriptable object for the current creature
     public void SetCurrentCreature(Creature_SO _creature)
@@ -40,21 +43,29 @@ public class Creature_Manager : MonoBehaviour
     void Start()
     {
         inventory = Inventory.instance;
-
-        //creatureImage.sprite = currentCreature.creatureSprite;
+        UpdateUi.Invoke();
+        creatureImage.sprite = currentCreature.creatureSprite;
     }
 
     //raises or lowers stats based on the creature's stress level and caps it when at maximum stress
     public void Train()
     {
         if (currentCreature.stressLevel < 5) ChangeStat(SelectRandomStat(3), RaiseOrLowerStat(currentCreature.stressLevel));
+        UpdateUi.Invoke();
     }
 
     // evolves the creature
     public void evolve()
     {
-        if (currentCreature.evolutionStage < 4) SetCurrentCreature(FindEvolution(DecideEvolution()));
+        if (currentCreature.currentLevel % 4 == 0)
+            if (currentCreature.evolutionStage < 4) SetCurrentCreature(FindEvolution(DecideEvolution()));
         creatureImage.sprite = currentCreature.creatureSprite;
+        UpdateUi.Invoke();
+    }
+
+    public void LevelUp()
+    {
+        currentCreature.currentLevel++;
     }
 
     // feeds the creature
@@ -73,6 +84,7 @@ public class Creature_Manager : MonoBehaviour
             }
             inventory.RemoveItem(_item);
             Heal();
+            UpdateUi.Invoke();
         }
         else
         {
@@ -90,6 +102,7 @@ public class Creature_Manager : MonoBehaviour
             print("" + currentCreature.name + " is fully healed");
             currentCreature.currentHealth = currentCreature.maxHealth;
         }
+        UpdateUi.Invoke();
     }
     //changes stat and stress
     void ChangeStat(int _statID, int _value)
