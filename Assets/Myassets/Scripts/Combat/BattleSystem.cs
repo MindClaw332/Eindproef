@@ -7,35 +7,51 @@ using UnityEngine.UI;
 
 public class BattleSystem : MonoBehaviour
 {
+    public static BattleSystem instance;
     [SerializeField] Creature_Manager creatureManager;
     [SerializeField] Enemy enemy;
     Creature_SO playerCreature;
     Creature_SO enemyCreature;
+    public Creature_SO attacker;
+    public Creature_SO defender;
     public enum battleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE };
     public battleState State;
     [SerializeField] TextMeshProUGUI battleText;
-    [SerializeField] UnityEvent UpdateUi;
-    Creature_SO attacker;
-    Creature_SO defender;
+    public UnityEvent UpdateUi;
     [SerializeField] Button attackButton;
     [SerializeField] Button doNothingButton;
-    [SerializeField] Combat_UI combatUI;
-    
+    public Combat_UI combatUI;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     void Start()
     {
         State = battleState.START;
         enemyCreature = enemy.enemyCreature;
         playerCreature = creatureManager.currentCreature;
+        attacker = playerCreature;
+        defender = enemyCreature;
+        TurnOffButtons();
         StartCoroutine(StartBattle());
     }
-    
+
 
     IEnumerator StartBattle()
     {
         battleText.SetText("your opponent will be: " + enemyCreature.creatureName);
         yield return new WaitForSeconds(2f);
-        State = battleState.PLAYERTURN;
+        //State = battleState.PLAYERTURN;
         StartCoroutine(PlayerTurn());
     }
 
@@ -45,16 +61,7 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(2f);
         battleText.SetText("Choose your next move: ");
         State = battleState.PLAYERTURN;
-    }
-
-    public void Attack(int _damage)
-    {
-
-        ChangeAttacker();
-        defender.currentHealth -= (_damage * (attacker.attack / 3)) - defender.defence / 3;
-        combatUI.UpdateUI();
-        SwitchTurn();
-
+        TurnOnButtons();
     }
 
     public void DoNothing()
@@ -65,14 +72,16 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EndBattle()
     {
-        attackButton.interactable = false;
-        doNothingButton.interactable = false;
+        TurnOffButtons();
         if (State == battleState.WIN)
         {
             battleText.SetText("You won");
             yield return new WaitForSeconds(2f);
+            creatureManager.LevelUp();
+            creatureManager.currentCreature.DefenceDrop = 0;
+            creatureManager.currentCreature.AttackDrop = 0;
             battleText.SetText("You leveled up. Returning to overworld");
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(5f);
         }
         else
         {
@@ -88,30 +97,36 @@ public class BattleSystem : MonoBehaviour
     {
         battleText.SetText("Enemy's turn");
         yield return new WaitForSeconds(2f);
-        Attack(10);
+        MovePool.instance.Attack();
     }
 
-    void ChangeAttacker()
+    public void Attack(int _damage)
+    {
+        ChangeAttacker();
+        defender.currentHealth -= _damage;
+        combatUI.UpdateUI();
+        SwitchTurn();
+    }
+
+    public void ChangeAttacker()
     {
         switch (State)
         {
             case battleState.PLAYERTURN:
                 attacker = playerCreature;
                 defender = enemyCreature;
-                attackButton.interactable = true;
-                doNothingButton.interactable = true;
+                TurnOffButtons();
                 break;
             case battleState.ENEMYTURN:
                 attacker = enemyCreature;
                 defender = playerCreature;
-                attackButton.interactable = false;
-                doNothingButton.interactable = false;
+                TurnOnButtons();
                 break;
 
         }
     }
 
-    void SwitchTurn()
+    public void SwitchTurn()
     {
         if (defender.currentHealth > 0)
         {
@@ -141,4 +156,21 @@ public class BattleSystem : MonoBehaviour
             StartCoroutine(EndBattle());
         }
     }
+
+    void TurnOffButtons()
+    {
+        for (int i = 0; i < combatUI.playerButtons.Length; i++)
+        {
+            combatUI.playerButtons[i].interactable = false;
+        }
+    }
+
+        void TurnOnButtons()
+    {
+        for (int i = 0; i < combatUI.playerButtons.Length; i++)
+        {
+            combatUI.playerButtons[i].interactable = true;
+        }
+    }
+
 }

@@ -15,10 +15,11 @@ public class Combat_UI : MonoBehaviour
     [SerializeField] TextMeshProUGUI enemyHealthText;
     [SerializeField] Slider playerHealthSlider;
     [SerializeField] Slider enemyHealthSlider;
+    public Button[] playerButtons;
     // Start is called before the first frame update
     void Start()
     {
-
+        SetButtonsPlayer();
 
     }
 
@@ -36,8 +37,16 @@ public class Combat_UI : MonoBehaviour
         enemyHealthSlider.maxValue = enemy.enemyCreature.maxHealth;
         playerImage.sprite = creatureManager.currentCreature.creatureSprite;
         enemyImage.sprite = enemy.enemyCreature.creatureSprite;
-        
+
         playerHealthSlider.value = creatureManager.currentCreature.currentHealth;
         enemyHealthSlider.value = enemy.enemyCreature.currentHealth;
+    }
+
+    public void SetButtonsPlayer()
+    {
+        for (int i = 0; i < playerButtons.Length; i++)
+        {
+            MovePool.instance.AddMove(creatureManager.moves[i], playerButtons[i]);
+        }
     }
 }

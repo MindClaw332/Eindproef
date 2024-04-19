@@ -23,4 +23,5 @@ MonoBehaviour:
   maxStressLevel: 5
   sourFruitEaten: 0
   sweetFruitEaten: 0
+  currentLevel: 1
   creatureSprite: {fileID: -166207734, guid: 6637e5e45594b764699e8e6dd4428bd3, type: 3}

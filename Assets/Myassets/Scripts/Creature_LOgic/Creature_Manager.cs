@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -14,6 +15,8 @@ public class Creature_Manager : MonoBehaviour
     [SerializeField] int sweetFruitEaten;
     [SerializeField] int currentLevel;
     [SerializeField] UnityEvent UpdateUi;
+    public List<int> moves;
+
 
     // instantiates a scriptable object for the current creature
     public void SetCurrentCreature(Creature_SO _creature)
@@ -37,6 +40,10 @@ public class Creature_Manager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         SetCurrentCreature(possibleCreatures[0]);
+        for (int i = 0; i < 3; i++)
+        {
+            moves.Add(i);
+        }
         //SetEnemy(FindEvolution(SelectEnemyCreature()));
     }
 
@@ -57,7 +64,7 @@ public class Creature_Manager : MonoBehaviour
     // evolves the creature
     public void evolve()
     {
-        if (currentCreature.currentLevel % 4 == 0)
+        if (currentCreature.currentLevel % 3 == 0)
             if (currentCreature.evolutionStage < 4) SetCurrentCreature(FindEvolution(DecideEvolution()));
         creatureImage.sprite = currentCreature.creatureSprite;
         UpdateUi.Invoke();
