@@ -17,6 +17,10 @@ public class Combat_UI : MonoBehaviour
     [SerializeField] Slider enemyHealthSlider;
     public Button[] playerButtons;
     // Start is called before the first frame update
+    void Awake()
+    {
+        creatureManager = Creature_Manager.instance;
+    }
     void Start()
     {
         SetButtonsPlayer();

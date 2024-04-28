@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Creature_Manager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class Creature_Manager : MonoBehaviour
     [SerializeField] int sourFruitEaten;
     [SerializeField] int sweetFruitEaten;
     [SerializeField] int currentLevel;
-    [SerializeField] UnityEvent UpdateUi;
+    public UnityEvent UpdateUi;
     public List<int> moves;
 
 
@@ -64,15 +65,20 @@ public class Creature_Manager : MonoBehaviour
     // evolves the creature
     public void evolve()
     {
-        if (currentCreature.currentLevel % 3 == 0)
+        if (currentCreature.currentLevel % 4 == 0)
+        {
             if (currentCreature.evolutionStage < 4) SetCurrentCreature(FindEvolution(DecideEvolution()));
-        creatureImage.sprite = currentCreature.creatureSprite;
-        UpdateUi.Invoke();
+            creatureImage.sprite = currentCreature.creatureSprite;
+            UpdateUi.Invoke();
+        }
+        //if (currentCreature.evolutionStage < 4) SetCurrentCreature(FindEvolution(DecideEvolution()));
+
     }
 
     public void LevelUp()
     {
         currentCreature.currentLevel++;
+        UpdateUi.Invoke();
     }
 
     // feeds the creature
@@ -118,6 +124,7 @@ public class Creature_Manager : MonoBehaviour
         {
             case 0:
                 currentCreature.maxHealth += _value;
+                currentCreature.currentHealth += _value;
                 currentCreature.stressLevel += 1;
                 break;
             case 1:
@@ -136,7 +143,10 @@ public class Creature_Manager : MonoBehaviour
     //selects a random stat
     int SelectRandomStat(int _amountOfStats)
     {
-        return Random.Range(0, _amountOfStats - 1);
+        int _stat = Random.Range(0, _amountOfStats);
+        if (_stat >= _amountOfStats) print("te hoge stat");
+        return _stat;
+
     }
 
     // decides if the stat should be raised or lowered
@@ -240,6 +250,11 @@ public class Creature_Manager : MonoBehaviour
         }
         if (_correctEvolution == null) { Debug.Log("for loop kaput"); }
         return _correctEvolution;
+    }
+
+    public void ResetStress()
+    {
+        currentCreature.stressLevel = 0;
     }
 
 
