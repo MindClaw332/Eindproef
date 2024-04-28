@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Creature_Manager : MonoBehaviour
 {
@@ -11,6 +14,10 @@ public class Creature_Manager : MonoBehaviour
     public Inventory inventory;
     [SerializeField] int sourFruitEaten;
     [SerializeField] int sweetFruitEaten;
+    [SerializeField] int currentLevel;
+    public UnityEvent UpdateUi;
+    public List<int> moves;
+
 
     // instantiates a scriptable object for the current creature
     public void SetCurrentCreature(Creature_SO _creature)
@@ -34,27 +41,44 @@ public class Creature_Manager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         SetCurrentCreature(possibleCreatures[0]);
+        for (int i = 0; i < 3; i++)
+        {
+            moves.Add(i);
+        }
         //SetEnemy(FindEvolution(SelectEnemyCreature()));
     }
 
     void Start()
     {
         inventory = Inventory.instance;
-
-        //creatureImage.sprite = currentCreature.creatureSprite;
+        UpdateUi.Invoke();
+        creatureImage.sprite = currentCreature.creatureSprite;
     }
 
     //raises or lowers stats based on the creature's stress level and caps it when at maximum stress
     public void Train()
     {
         if (currentCreature.stressLevel < 5) ChangeStat(SelectRandomStat(3), RaiseOrLowerStat(currentCreature.stressLevel));
+        UpdateUi.Invoke();
     }
 
     // evolves the creature
     public void evolve()
     {
-        if (currentCreature.evolutionStage < 4) SetCurrentCreature(FindEvolution(DecideEvolution()));
-        creatureImage.sprite = currentCreature.creatureSprite;
+        if (currentCreature.currentLevel % 4 == 0)
+        {
+            if (currentCreature.evolutionStage < 4) SetCurrentCreature(FindEvolution(DecideEvolution()));
+            creatureImage.sprite = currentCreature.creatureSprite;
+            UpdateUi.Invoke();
+        }
+        //if (currentCreature.evolutionStage < 4) SetCurrentCreature(FindEvolution(DecideEvolution()));
+
+    }
+
+    public void LevelUp()
+    {
+        currentCreature.currentLevel++;
+        UpdateUi.Invoke();
     }
 
     // feeds the creature
@@ -73,6 +97,7 @@ public class Creature_Manager : MonoBehaviour
             }
             inventory.RemoveItem(_item);
             Heal();
+            UpdateUi.Invoke();
         }
         else
         {
@@ -90,6 +115,7 @@ public class Creature_Manager : MonoBehaviour
             print("" + currentCreature.name + " is fully healed");
             currentCreature.currentHealth = currentCreature.maxHealth;
         }
+        UpdateUi.Invoke();
     }
     //changes stat and stress
     void ChangeStat(int _statID, int _value)
@@ -98,6 +124,7 @@ public class Creature_Manager : MonoBehaviour
         {
             case 0:
                 currentCreature.maxHealth += _value;
+                currentCreature.currentHealth += _value;
                 currentCreature.stressLevel += 1;
                 break;
             case 1:
@@ -116,7 +143,10 @@ public class Creature_Manager : MonoBehaviour
     //selects a random stat
     int SelectRandomStat(int _amountOfStats)
     {
-        return Random.Range(0, _amountOfStats - 1);
+        int _stat = Random.Range(0, _amountOfStats);
+        if (_stat >= _amountOfStats) print("te hoge stat");
+        return _stat;
+
     }
 
     // decides if the stat should be raised or lowered
@@ -220,6 +250,11 @@ public class Creature_Manager : MonoBehaviour
         }
         if (_correctEvolution == null) { Debug.Log("for loop kaput"); }
         return _correctEvolution;
+    }
+
+    public void ResetStress()
+    {
+        currentCreature.stressLevel = 0;
     }
 
 

@@ -15,12 +15,13 @@ MonoBehaviour:
   creatureName: sourDefence
   id: 11
   evolutionStage: 3
-  currentHealth: 5
-  maxHealth: 5
-  attack: 5
-  defence: 5
+  currentHealth: 25
+  maxHealth: 25
+  attack: 16
+  defence: 24
   stressLevel: 0
   maxStressLevel: 5
   sourFruitEaten: 0
   sweetFruitEaten: 0
-  creatureSprite: {fileID: 0}
+  currentLevel: 1
+  creatureSprite: {fileID: -53089947, guid: 6637e5e45594b764699e8e6dd4428bd3, type: 3}

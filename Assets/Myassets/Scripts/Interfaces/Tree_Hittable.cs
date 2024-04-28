@@ -17,7 +17,7 @@ public class Tree_Hittable : MonoBehaviour, I_Hittable
     void SpawnFruit(int _maxFruitAmount)
     {
         int i = 0;
-        int _randomAmount = Random.Range(0, _maxFruitAmount);
+        int _randomAmount = Random.Range(1, _maxFruitAmount);
         while (i < _randomAmount)
         {
             int _randomFruit = Random.Range(0, fruits.Length);

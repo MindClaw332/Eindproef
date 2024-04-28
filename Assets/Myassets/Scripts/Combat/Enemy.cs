@@ -14,21 +14,17 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
-        
+
         creatureManager = Creature_Manager.instance;
         if (creatureManager == null) Debug.LogError("Creature manager not found");
         SetEnemy(creatureManager.FindEvolution(SelectEnemyCreature()));
+        RaiseDifficulty();
     }
 
 
     void Start()
     {
         OnEnemyInit.Invoke();
-    }
-
-    void Update()
-    {
-
     }
 
     private int SelectEnemyCreature()
@@ -39,7 +35,7 @@ public class Enemy : MonoBehaviour
         switch (creatureManager.currentCreature.evolutionStage)
         {
             case 1:
-                creatureIndex = Random.Range(1, 3);
+                creatureIndex = 0;
                 print(creatureIndex + "random index");
                 return creatureIndex;
             case 2:
@@ -62,9 +58,54 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void RaiseDifficulty()
+    {
+        int _amount = Random.Range(1, 4);
+        for (int i = 0; i < _amount; i++)
+        {
+            ChangeStat(SelectRandomStat(3), CalculateStatChange());
+            Debug.Log("difficulty raised");
+        }
+
+    }
+
+    int SelectRandomStat(int _amountOfStats)
+    {
+        int _stat = Random.Range(0, _amountOfStats);
+        if (_stat >= _amountOfStats) print("te hoge stat");
+        return _stat;
+    }
+
+    void ChangeStat(int _statID, int _value)
+    {
+        switch (_statID)
+        {
+            case 0:
+                enemyCreature.maxHealth += _value;
+                enemyCreature.currentHealth += _value;
+                break;
+            case 1:
+                enemyCreature.attack += _value;
+                break;
+            case 2:
+                enemyCreature.defence += _value;
+                break;
+            default:
+                break;
+        }
+    }
+
+    int CalculateStatChange()
+    {
+        int _change = Random.Range(1, 3) + 2 * creatureManager.currentCreature.evolutionStage;
+        return _change;
+    }
+
     public void SetEnemy(Creature_SO _creature)
     {
         var clone = Instantiate(_creature);
         enemyCreature = clone;
     }
+
+
 }

@@ -9,10 +9,11 @@ public class Characters_movement : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] float speed = 5f;
-    [SerializeField] Game_Manager gm;
+    //[SerializeField] Game_Manager gm;
 
     void Awake()
     {
+
         if (GetComponent<Rigidbody2D>() != null)
         {
             rb = GetComponent<Rigidbody2D>();
@@ -21,7 +22,12 @@ public class Characters_movement : MonoBehaviour
         {
             Debug.Log("Rigidbody2D not found");
         }
+        //Game_Manager.instance.SetFlipped(false);
 
+    }
+    void OnEnable()
+    {
+        Game_Manager.instance.SetFlipped(false);
     }
 
     void FixedUpdate()
@@ -43,12 +49,12 @@ public class Characters_movement : MonoBehaviour
 
     void ChangeDirection()
     {
-        if (Input.GetAxis("Horizontal") > 0 && gm.GetFlipped() == true)
+        if (Input.GetAxis("Horizontal") > 0 && Game_Manager.instance.GetFlipped() == true)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
             Game_Manager.instance.SetFlipped(false);
         }
-        else if (Input.GetAxis("Horizontal") < 0 && gm.GetFlipped() == false)
+        else if (Input.GetAxis("Horizontal") < 0 && Game_Manager.instance.GetFlipped() == false)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
             Game_Manager.instance.SetFlipped(true);

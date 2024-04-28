@@ -11,6 +11,7 @@ public class Creature_Debug : MonoBehaviour
     [SerializeField] int creatureStress;
     [SerializeField] string creatureName;
     [SerializeField] int creatureEvolutionstage;
+    [SerializeField] int creatureLevel;
 
     void Awake()
     {
@@ -26,6 +27,7 @@ public class Creature_Debug : MonoBehaviour
         creatureDefence = Creature_Manager.instance.getStat(2);
         creatureStress = Creature_Manager.instance.getStat(3);
         creatureEvolutionstage = Creature_Manager.instance.getStat(5);
+        creatureLevel = Creature_Manager.instance.currentCreature.currentLevel;
 
     }
 }
