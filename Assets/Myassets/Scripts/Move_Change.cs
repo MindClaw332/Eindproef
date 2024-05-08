@@ -70,7 +70,7 @@ public class Move_Change : MonoBehaviour
                 break;
         }
     }
-
+    
     public void ChangeMove(int _moveID, int _price)
     {
         //Creature_Manager.instance.moves.Remove(currentButton.GetComponent<MoveOnButton>().moveID);

@@ -84,6 +84,12 @@ public class Creature_Manager : MonoBehaviour
     // feeds the creature
     public void Feed(Item_SO _item)
     {
+        if (currentCreature.currentHealth >= currentCreature.maxHealth)
+        {
+            print("" + currentCreature.name + " is already at full health");
+            return;
+        }
+
         if (inventory.items.Contains(_item))
         {
             switch (_item.itemTaste)
@@ -96,6 +102,7 @@ public class Creature_Manager : MonoBehaviour
                     break;
             }
             inventory.RemoveItem(_item);
+            Debug.Log("item removed");
             Heal();
             UpdateUi.Invoke();
         }

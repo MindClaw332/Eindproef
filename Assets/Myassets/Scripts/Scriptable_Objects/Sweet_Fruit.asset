@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Fruit
   prefab: {fileID: 0}
-  sprite: {fileID: 0}
-  amount: 2
+  sprite: {fileID: -3999318091760446185, guid: b52ff98e610bad848b303ab43ebbad57, type: 3}
+  amount: 0
   itemTaste: 0

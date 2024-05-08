@@ -1,34 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class TestStuff : MonoBehaviour
+public class TestStuff : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
-    //[SerializeField] Button[] buttons;
-    // Start is called before the first frame update
-    void Start()
+    public bool buttonPressed = false;
+    public void OnPointerDown(PointerEventData eventData)
     {
-        //StartCoroutine(RandomprintTest());
+        print("hier werkt ie");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPointerUp(PointerEventData eventData)
     {
-
-    }
-
-    public void Test(int _print)
-    {
-        Debug.Log(_print);
-    }
-
-    IEnumerator RandomprintTest()
-    {
-        print(Random.Range(0, 4));
-        yield return new WaitForSeconds(0.5f);
-        StartCoroutine(RandomprintTest());
+        print("hier werkt ie maar omhoog");
     }
 }

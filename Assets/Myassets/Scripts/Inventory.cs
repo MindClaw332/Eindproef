@@ -8,7 +8,9 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
 
     public List<Item_SO> items = new List<Item_SO>();
-    
+
+    [SerializeField] Item_SO[] allPossibleItems;
+
     #region Singleton
     //setup singleton
     void Awake()
@@ -22,8 +24,17 @@ public class Inventory : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-    } 
+
+    }
     #endregion
+
+    void OnEnable()
+    {
+        foreach (Item_SO item in allPossibleItems)
+        {
+            item.amount = 0;
+        }
+    }
 
     // add item to inventory
     public void AddItem(Item_SO item)
@@ -51,4 +62,11 @@ public class Inventory : MonoBehaviour
             items.Remove(item);
         }
     }
+
+    public int GetAmount(Item_SO item)
+    {
+        int _amount = item.amount;
+        return _amount;
+    }
+    
 }
