@@ -25,6 +25,7 @@ public class Move_Change : MonoBehaviour
 
     public void AddMove(int _moveID, Button button)
     {
+        button.GetComponentInChildren<TextMeshProUGUI>().autoSizeTextContainer = true;
         switch (_moveID)
         {
             case 0:
