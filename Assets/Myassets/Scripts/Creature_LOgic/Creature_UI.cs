@@ -40,10 +40,10 @@ public class Creature_UI : MonoBehaviour
 
     public void UpdateUI()
     {
-        creatureName.text = Creature_Manager.instance.currentCreature.creatureName;
-        creatureHp.text = Creature_Manager.instance.currentCreature.currentHealth.ToString() + "/" + Creature_Manager.instance.currentCreature.maxHealth.ToString();
-        creatureLevel.text = "lv. " + Creature_Manager.instance.currentCreature.currentLevel.ToString();
-        creatureImage.sprite = Creature_Manager.instance.currentCreature.creatureSprite;
-        moneyText.text = Game_Manager.instance.GetMoney().ToString();
+        //creatureName.text = Creature_Manager.instance.currentCreature.creatureName;
+        //creatureHp.text = Creature_Manager.instance.currentCreature.currentHealth.ToString() + "/" + Creature_Manager.instance.currentCreature.maxHealth.ToString();
+        //creatureLevel.text = "lv. " + Creature_Manager.instance.currentCreature.currentLevel.ToString();
+        //creatureImage.sprite = Creature_Manager.instance.currentCreature.creatureSprite;
+        //moneyText.text = Game_Manager.instance.GetMoney().ToString();
     }
 }

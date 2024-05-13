@@ -8,6 +8,7 @@ public class Move_Change : MonoBehaviour
 {
     [SerializeField] Button[] moveButtons;
     [SerializeField] Button currentButton;
+    [SerializeField] GameObject container;
 
     public void OnEnable()
     {
@@ -25,7 +26,7 @@ public class Move_Change : MonoBehaviour
 
     public void AddMove(int _moveID, Button button)
     {
-        button.GetComponentInChildren<TextMeshProUGUI>().autoSizeTextContainer = true;
+        //button.GetComponentInChildren<TextMeshProUGUI>().autoSizeTextContainer = true;
         switch (_moveID)
         {
             case 0:
@@ -74,8 +75,6 @@ public class Move_Change : MonoBehaviour
     
     public void ChangeMove(int _moveID, int _price)
     {
-        //Creature_Manager.instance.moves.Remove(currentButton.GetComponent<MoveOnButton>().moveID);
-        //Creature_Manager.instance.moves.Add(_moveID);
         if (Creature_Manager.instance.moves.Contains(_moveID) == false && Game_Manager.instance.GetMoney() >= _price)
         {
             Game_Manager.instance.AddMoney(-_price);
@@ -84,6 +83,8 @@ public class Move_Change : MonoBehaviour
             AddMove(_moveID, currentButton);
             DrawButtons();
             Creature_Manager.instance.UpdateUi.Invoke();
+            container.SetActive(false);
+            print("hier werkt ie");
         }
     }
 

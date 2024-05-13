@@ -2,20 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
-public class TestStuff : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class TestStuff : MonoBehaviour
 {
 
-    public bool buttonPressed = false;
-    public void OnPointerDown(PointerEventData eventData)
+    void Start()
     {
-        print("hier werkt ie");
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        print("hier werkt ie maar omhoog");
+       // GetComponentInChildren<TextMeshProUGUI>().text = "asdaasdasdasdasdasdasdasd";
     }
 }

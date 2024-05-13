@@ -12,7 +12,7 @@ public class Button_Text_movement : MonoBehaviour, IPointerDownHandler, IPointer
     void Start()
     {
         text = GetComponentInChildren<TextMeshProUGUI>();
-        startPosition = text.transform.position;
+        startPosition = text.transform.localPosition;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -22,6 +22,6 @@ public class Button_Text_movement : MonoBehaviour, IPointerDownHandler, IPointer
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        text.transform.position = startPosition;
+        text.transform.localPosition = startPosition;
     }
 }
