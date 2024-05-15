@@ -13,6 +13,9 @@ public class Creature_UI : MonoBehaviour
     [SerializeField] TextMeshProUGUI creatureLevel;
     [SerializeField] Image creatureImage;
     [SerializeField] TextMeshProUGUI moneyText;
+    [SerializeField] TextMeshProUGUI hpIconText;
+    [SerializeField] TextMeshProUGUI AttackIconText;
+    [SerializeField] TextMeshProUGUI defenseIconText;
 
     void Awake()
     {
@@ -30,6 +33,7 @@ public class Creature_UI : MonoBehaviour
     void OnEnable()
     {
         UpdateUI();
+        UpdateStats();
     }
 
     // Update is called once per frame
@@ -40,10 +44,17 @@ public class Creature_UI : MonoBehaviour
 
     public void UpdateUI()
     {
-        //creatureName.text = Creature_Manager.instance.currentCreature.creatureName;
+        creatureName.text = Creature_Manager.instance.currentCreature.creatureName;
         //creatureHp.text = Creature_Manager.instance.currentCreature.currentHealth.ToString() + "/" + Creature_Manager.instance.currentCreature.maxHealth.ToString();
-        //creatureLevel.text = "lv. " + Creature_Manager.instance.currentCreature.currentLevel.ToString();
-        //creatureImage.sprite = Creature_Manager.instance.currentCreature.creatureSprite;
-        //moneyText.text = Game_Manager.instance.GetMoney().ToString();
+        creatureLevel.text = "lv. " + Creature_Manager.instance.currentCreature.currentLevel.ToString();
+        creatureImage.sprite = Creature_Manager.instance.currentCreature.creatureSprite;
+        moneyText.text = Game_Manager.instance.GetMoney().ToString();
+    }
+
+    public void UpdateStats()
+    {
+        hpIconText.text = Creature_Manager.instance.currentCreature.currentHealth.ToString();
+        AttackIconText.text = Creature_Manager.instance.currentCreature.attack.ToString();
+        defenseIconText.text = Creature_Manager.instance.currentCreature.defence.ToString();
     }
 }

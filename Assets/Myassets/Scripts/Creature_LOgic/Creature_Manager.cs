@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -17,6 +19,13 @@ public class Creature_Manager : MonoBehaviour
     [SerializeField] int currentLevel;
     public UnityEvent UpdateUi;
     public List<int> moves;
+    [SerializeField] GameObject heartSprite;
+    [SerializeField] GameObject attackSprite;
+    [SerializeField] GameObject defenceSprite;
+    [SerializeField] GameObject raiseSprite;
+    [SerializeField] GameObject lowerSprite;
+    [SerializeField] GameObject trainPivot;
+    [SerializeField] GameObject arrowPivot;
 
 
     // instantiates a scriptable object for the current creature
@@ -58,7 +67,9 @@ public class Creature_Manager : MonoBehaviour
     //raises or lowers stats based on the creature's stress level and caps it when at maximum stress
     public void Train()
     {
-        if (currentCreature.stressLevel < 5) ChangeStat(SelectRandomStat(3), RaiseOrLowerStat(currentCreature.stressLevel));
+        int _randomStat = SelectRandomStat(3);
+        int _lowerOrRaiseStat = RaiseOrLowerStat(currentCreature.stressLevel);
+        if (currentCreature.stressLevel < 5) ChangeStat(_randomStat, _lowerOrRaiseStat);
         UpdateUi.Invoke();
     }
 
@@ -264,5 +275,33 @@ public class Creature_Manager : MonoBehaviour
         currentCreature.stressLevel = 0;
     }
 
+    public void TrainingUiPopup(int _statType, int _raiseOrLower)
+    {
+        switch (_statType)
+        {
+            case 0:
+                Instantiate(heartSprite, trainPivot.transform.position, quaternion.identity);
+                break;
+            case 1:
+                Instantiate(attackSprite, trainPivot.transform.position, quaternion.identity);
+                break;
+            case 2:
+                Instantiate(defenceSprite, trainPivot.transform.position, quaternion.identity);
+                break;
+            default:
+                break;
+        }
+        switch (_raiseOrLower)
+        {
+            case 1:
+                Instantiate(raiseSprite, trainPivot.transform.position, quaternion.identity);
+                break;
+            case -1:
+                Instantiate(lowerSprite, trainPivot.transform.position, quaternion.identity);
+                break;
+            default:
+                break;
+        }
+    }
 
 }

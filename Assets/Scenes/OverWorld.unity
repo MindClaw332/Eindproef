@@ -1661,6 +1661,7 @@ RectTransform:
   m_Children:
   - {fileID: 1594596131}
   - {fileID: 1946249980}
+  - {fileID: 663547215}
   m_Father: {fileID: 566825701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1748,6 +1749,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1843389731}
         m_TargetAssemblyTypeName: Creature_Manager, Assembly-CSharp
         m_MethodName: Train
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1843389731}
+        m_TargetAssemblyTypeName: Creature_Manager, Assembly-CSharp
+        m_MethodName: test
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2195,7 +2208,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 627, y: 25}
+  m_AnchoredPosition: {x: 597, y: 25}
   m_SizeDelta: {x: 116.0553, y: 218.40771}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &207918735
@@ -4046,6 +4059,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654744363}
   m_CullTransparentMesh: 1
+--- !u!1 &663547214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 663547215}
+  m_Layer: 5
+  m_Name: PivotUIPopup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &663547215
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663547214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 126519001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -19.2, y: 43.4}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &674222075
 GameObject:
   m_ObjectHideFlags: 0
@@ -4775,11 +4823,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9acd484b501feff4e960b8491d7c4480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creatureName: {fileID: 0}
+  creatureName: {fileID: 2132010778}
   creatureHp: {fileID: 0}
-  creatureLevel: {fileID: 0}
+  creatureLevel: {fileID: 1414851577}
   creatureImage: {fileID: 1798186466}
   moneyText: {fileID: 1006388303}
+  hpIconText: {fileID: 830814240}
+  AttackIconText: {fileID: 2061496215}
+  defenseIconText: {fileID: 1487835488}
 --- !u!114 &813596423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4855,7 +4906,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2019291787}
   - {fileID: 1851568747}
   m_Father: {fileID: 1843389732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5026,7 +5076,7 @@ GameObject:
   - component: {fileID: 830814241}
   - component: {fileID: 830814240}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HPicontext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7180,7 +7230,7 @@ RectTransform:
   m_GameObject: {fileID: 1414851575}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25326055, y: 0.25326055, z: 0.25326058}
+  m_LocalScale: {x: 0.277832, y: 0.277832, z: 0.27783206}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 830814239}
@@ -7190,7 +7240,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.2183685, y: 11.401276}
+  m_AnchoredPosition: {x: 6.8216705, y: 12.507431}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1414851577
@@ -7452,7 +7502,7 @@ RectTransform:
   m_GameObject: {fileID: 1431035582}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25326055, y: 0.25326055, z: 0.25326058}
+  m_LocalScale: {x: 0.277832, y: 0.277832, z: 0.27783206}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 966090647}
@@ -7462,7 +7512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13.5, y: -4.4}
+  m_AnchoredPosition: {x: -14.809788, y: -4.8269196}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1431035584
@@ -8127,7 +8177,7 @@ GameObject:
   - component: {fileID: 1487835489}
   - component: {fileID: 1487835488}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: defenseicontext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11561,12 +11611,12 @@ RectTransform:
   m_GameObject: {fileID: 1827237507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.6954906, y: 3.6954906, z: 3.6954906}
+  m_LocalScale: {x: 3.3686614, y: 3.3686614, z: 3.3686614}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2132010777}
-  - {fileID: 1414851576}
   - {fileID: 1431035583}
+  - {fileID: 1414851576}
+  - {fileID: 2132010777}
   m_Father: {fileID: 1910761495}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -11678,7 +11728,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 813596422}
+        m_TargetAssemblyTypeName: Creature_UI, Assembly-CSharp
+        m_MethodName: UpdateStats
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   moves: 
+  heartSprite: {fileID: 2891507790679195306, guid: 3e2e52e409cfe0a4cad9e1a629e1abc4, type: 3}
+  attackSprite: {fileID: 0}
+  defenceSprite: {fileID: 0}
+  raiseSprite: {fileID: 0}
+  lowerSprite: {fileID: 0}
+  trainPivot: {fileID: 663547214}
+  arrowPivot: {fileID: 0}
 --- !u!4 &1843389732
 Transform:
   m_ObjectHideFlags: 0
@@ -11859,6 +11928,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2019291787}
   - {fileID: 654744364}
   - {fileID: 1798186468}
   - {fileID: 1006388302}
@@ -12510,12 +12580,12 @@ RectTransform:
   m_LocalScale: {x: 19.419563, y: 10.6600485, z: 10.152428}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 813596426}
+  m_Father: {fileID: 1851568747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1820, y: 980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2019291788
 MonoBehaviour:
@@ -12849,7 +12919,7 @@ GameObject:
   - component: {fileID: 2061496216}
   - component: {fileID: 2061496215}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: attackicontext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13033,14 +13103,14 @@ RectTransform:
   m_GameObject: {fileID: 2132010776}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25326055, y: 0.25326055, z: 0.25326058}
+  m_LocalScale: {x: 0.277832, y: 0.277832, z: 0.27783206}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1827237508}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.50338, y: 3.1353302}
+  m_AnchoredPosition: {x: 7.134323, y: 3.439499}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2132010778
