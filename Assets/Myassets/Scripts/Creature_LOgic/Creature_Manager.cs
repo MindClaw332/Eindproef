@@ -70,6 +70,7 @@ public class Creature_Manager : MonoBehaviour
         int _randomStat = SelectRandomStat(3);
         int _lowerOrRaiseStat = RaiseOrLowerStat(currentCreature.stressLevel);
         if (currentCreature.stressLevel < 5) ChangeStat(_randomStat, _lowerOrRaiseStat);
+        TrainingUiPopup(_randomStat, _lowerOrRaiseStat);
         UpdateUi.Invoke();
     }
 
@@ -279,18 +280,20 @@ public class Creature_Manager : MonoBehaviour
     {
         switch (_statType)
         {
+            GameObject statClone;
             case 0:
-                Instantiate(heartSprite, trainPivot.transform.position, quaternion.identity);
+                statClone = Instantiate(heartSprite, trainPivot.transform.position, quaternion.identity);
                 break;
             case 1:
-                Instantiate(attackSprite, trainPivot.transform.position, quaternion.identity);
+                statClone = Instantiate(attackSprite, trainPivot.transform.position, quaternion.identity);
                 break;
             case 2:
-                Instantiate(defenceSprite, trainPivot.transform.position, quaternion.identity);
+                statClone = Instantiate(defenceSprite, trainPivot.transform.position, quaternion.identity);
                 break;
             default:
                 break;
         }
+        
         switch (_raiseOrLower)
         {
             case 1:
