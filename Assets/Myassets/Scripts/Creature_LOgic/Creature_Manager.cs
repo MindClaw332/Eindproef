@@ -11,7 +11,7 @@ public class Creature_Manager : MonoBehaviour
     public static Creature_Manager instance;
     public Creature_SO[] possibleCreatures;
     public Creature_SO currentCreature;
-    //public Sprite testSprite;
+    [SerializeField] GameObject canvasReference;
     [SerializeField] Image creatureImage;
     public Inventory inventory;
     [SerializeField] int sourFruitEaten;
@@ -69,8 +69,11 @@ public class Creature_Manager : MonoBehaviour
     {
         int _randomStat = SelectRandomStat(3);
         int _lowerOrRaiseStat = RaiseOrLowerStat(currentCreature.stressLevel);
-        if (currentCreature.stressLevel < 5) ChangeStat(_randomStat, _lowerOrRaiseStat);
-        TrainingUiPopup(_randomStat, _lowerOrRaiseStat);
+        if (currentCreature.stressLevel < 5)
+        {
+            ChangeStat(_randomStat, _lowerOrRaiseStat);
+            TrainingUiPopup(_randomStat, _lowerOrRaiseStat);
+        }
         UpdateUi.Invoke();
     }
 
@@ -278,29 +281,37 @@ public class Creature_Manager : MonoBehaviour
 
     public void TrainingUiPopup(int _statType, int _raiseOrLower)
     {
+        GameObject statClone;
         switch (_statType)
         {
-            GameObject statClone;
+
             case 0:
                 statClone = Instantiate(heartSprite, trainPivot.transform.position, quaternion.identity);
+                statClone.transform.SetParent(canvasReference.transform);
                 break;
             case 1:
                 statClone = Instantiate(attackSprite, trainPivot.transform.position, quaternion.identity);
+                statClone.transform.SetParent(canvasReference.transform);
                 break;
             case 2:
                 statClone = Instantiate(defenceSprite, trainPivot.transform.position, quaternion.identity);
+                statClone.transform.SetParent(canvasReference.transform);
                 break;
             default:
                 break;
         }
-        
+
+        GameObject arrowClone;
         switch (_raiseOrLower)
         {
+
             case 1:
-                Instantiate(raiseSprite, trainPivot.transform.position, quaternion.identity);
+                arrowClone = Instantiate(raiseSprite, arrowPivot.transform.position, quaternion.identity);
+                arrowClone.transform.SetParent(canvasReference.transform);
                 break;
             case -1:
-                Instantiate(lowerSprite, trainPivot.transform.position, quaternion.identity);
+                arrowClone = Instantiate(lowerSprite, arrowPivot.transform.position, quaternion.identity);
+                arrowClone.transform.SetParent(canvasReference.transform);
                 break;
             default:
                 break;

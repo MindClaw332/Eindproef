@@ -11744,6 +11744,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6292ac662529c354cb033be2e09842d8, type: 2}
   - {fileID: 11400000, guid: e7ab952548106874f9e0f1df0bab7d84, type: 2}
   currentCreature: {fileID: 0}
+  canvasReference: {fileID: 813596420}
   creatureImage: {fileID: 1798186466}
   inventory: {fileID: 0}
   sourFruitEaten: 0
