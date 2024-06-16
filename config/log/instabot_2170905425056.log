@@ -1,0 +1,18 @@
+2024-05-28 20:37:50,575 - instabot version: 0.117.0 (bot) - INFO - Instabot version: 0.117.0 Started
+2024-05-28 20:37:50,576 - instabot version: 0.117.0 (bot) - DEBUG - Bot imported from C:\Users\micha\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\instabot\bot\bot.py
+2024-05-28 20:37:50,576 - instabot version: 0.117.0 (api_login) - INFO - Not yet logged in starting: PRE-LOGIN FLOW!
+2024-05-28 20:37:50,723 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: accounts/get_prefill_candidates/ returned response: <Response [429]>
+2024-05-28 20:37:50,723 - instabot version: 0.117.0 (api) - DEBUG - Responsecode indicates error; response content: b'{"message":"Please wait a few minutes before you try again.","status":"fail"}'
+2024-05-28 20:37:50,723 - instabot version: 0.117.0 (api) - ERROR - Request returns 429 error!
+2024-05-28 20:37:50,906 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: qe/sync/ returned response: <Response [200]>
+2024-05-28 20:37:51,167 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: launcher/sync/ returned response: <Response [200]>
+2024-05-28 20:37:51,300 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: accounts/contact_point_prefill/ returned response: <Response [429]>
+2024-05-28 20:37:51,301 - instabot version: 0.117.0 (api) - DEBUG - Responsecode indicates error; response content: b'{"message":"Please wait a few minutes before you try again.","status":"fail"}'
+2024-05-28 20:37:51,301 - instabot version: 0.117.0 (api) - ERROR - Request returns 429 error!
+2024-05-28 20:37:51,875 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: accounts/login/ returned response: <Response [400]>
+2024-05-28 20:37:51,875 - instabot version: 0.117.0 (api) - DEBUG - Responsecode indicates error; response content: b'{"message":"You\'ll need to update Instagram to the latest version before you can use the app.","status":"fail","error_type":"block_eu_user_login_in_old_app"}'
+2024-05-28 20:37:51,875 - instabot version: 0.117.0 (api) - ERROR - Request returns 400 error!
+2024-05-28 20:37:51,876 - instabot version: 0.117.0 (api) - INFO - Instagram's error message: You'll need to update Instagram to the latest version before you can use the app.
+2024-05-28 20:37:51,876 - instabot version: 0.117.0 (api) - INFO - Error type: block_eu_user_login_in_old_app
+2024-05-28 20:37:51,876 - instabot version: 0.117.0 (api) - ERROR - Failed to login go to instagram and change your password
+2024-05-28 20:37:51,876 - instabot version: 0.117.0 (api) - INFO - Username or password is incorrect.

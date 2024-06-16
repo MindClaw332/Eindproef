@@ -53,7 +53,7 @@ public class Creature_UI : MonoBehaviour
 
     public void UpdateStats()
     {
-        hpIconText.text = Creature_Manager.instance.currentCreature.currentHealth.ToString();
+        hpIconText.text = Creature_Manager.instance.currentCreature.currentHealth.ToString() + "/" + Creature_Manager.instance.currentCreature.maxHealth.ToString();
         AttackIconText.text = Creature_Manager.instance.currentCreature.attack.ToString();
         defenseIconText.text = Creature_Manager.instance.currentCreature.defence.ToString();
     }

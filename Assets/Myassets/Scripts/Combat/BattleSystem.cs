@@ -58,6 +58,7 @@ public class BattleSystem : MonoBehaviour
         battleText.SetText("Your turn");
         yield return new WaitForSeconds(2f);
         battleText.SetText("Choose your next move: ");
+        yield return new WaitForSeconds(0.5f);
         State = battleState.PLAYERTURN;
         TurnOnButtons();
     }
@@ -130,8 +131,9 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void SwitchTurn()
+    public IEnumerator SwitchTurn()
     {
+        yield return new WaitForSeconds(2f);
         if (defender.currentHealth > 0)
         {
             switch (State)
@@ -165,6 +167,7 @@ public class BattleSystem : MonoBehaviour
     {
         for (int i = 0; i < combatUI.playerButtons.Length; i++)
         {
+            combatUI.playerButtons[i].GetComponent<Button_Text_movement>().enabled = false;
             combatUI.playerButtons[i].interactable = false;
         }
     }
@@ -173,8 +176,19 @@ public class BattleSystem : MonoBehaviour
     {
         for (int i = 0; i < combatUI.playerButtons.Length; i++)
         {
+            combatUI.playerButtons[i].GetComponent<Button_Text_movement>().enabled = true;
             combatUI.playerButtons[i].interactable = true;
         }
+    }
+
+    public void ShowText(string _text)
+    {
+        battleText.SetText(_text);
+    }
+
+    public void StartTurnSwitch()
+    {
+        StartCoroutine(SwitchTurn());
     }
 
 }

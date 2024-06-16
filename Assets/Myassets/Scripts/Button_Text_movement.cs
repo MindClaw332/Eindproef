@@ -9,6 +9,8 @@ public class Button_Text_movement : MonoBehaviour, IPointerDownHandler, IPointer
     Vector3 startPosition;
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] GameObject pivot;
+    [SerializeField] AudioClip audioClipStart;
+    [SerializeField] AudioClip audioClipEnd;
     void Start()
     {
         text = GetComponentInChildren<TextMeshProUGUI>();
@@ -18,10 +20,12 @@ public class Button_Text_movement : MonoBehaviour, IPointerDownHandler, IPointer
     public void OnPointerDown(PointerEventData eventData)
     {
         text.transform.position = pivot.transform.position;
+        AudioManager.instance.PlaySound(audioClipStart);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         text.transform.localPosition = startPosition;
+        AudioManager.instance.PlaySound(audioClipEnd);
     }
 }

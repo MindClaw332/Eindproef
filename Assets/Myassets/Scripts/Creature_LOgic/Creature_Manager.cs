@@ -26,6 +26,9 @@ public class Creature_Manager : MonoBehaviour
     [SerializeField] GameObject lowerSprite;
     [SerializeField] GameObject trainPivot;
     [SerializeField] GameObject arrowPivot;
+    [SerializeField] AudioClip[] audioClipsTraining;
+    [SerializeField] AudioClip audioClipDown;
+    [SerializeField] AudioClip audioClipUp;
 
 
     // instantiates a scriptable object for the current creature
@@ -73,7 +76,9 @@ public class Creature_Manager : MonoBehaviour
         {
             ChangeStat(_randomStat, _lowerOrRaiseStat);
             TrainingUiPopup(_randomStat, _lowerOrRaiseStat);
+            AudioManager.instance.PlayRandomClip(audioClipsTraining);
         }
+        
         UpdateUi.Invoke();
     }
 
@@ -99,6 +104,7 @@ public class Creature_Manager : MonoBehaviour
     // feeds the creature
     public void Feed(Item_SO _item)
     {
+        AudioManager.instance.PlaySound(audioClipUp);
         if (currentCreature.currentHealth >= currentCreature.maxHealth)
         {
             print("" + currentCreature.name + " is already at full health");

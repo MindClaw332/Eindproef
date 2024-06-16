@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
 
     public void RaiseDifficulty()
     {
-        int _amount = Random.Range(1, 4);
+        int _amount = Random.Range(1, 3);
         for (int i = 0; i < _amount; i++)
         {
             ChangeStat(SelectRandomStat(3), CalculateStatChange());
@@ -97,7 +97,7 @@ public class Enemy : MonoBehaviour
 
     int CalculateStatChange()
     {
-        int _change = Random.Range(1, 3) + 2 * creatureManager.currentCreature.evolutionStage;
+        int _change = 2 * creatureManager.currentCreature.evolutionStage;
         return _change;
     }
 

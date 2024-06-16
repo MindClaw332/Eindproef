@@ -68,7 +68,8 @@ public class MovePool : MonoBehaviour
         if (effectiveDamage < 0) effectiveDamage = 0;
         battleSystem.defender.currentHealth -= effectiveDamage;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Small Attack!");
+        battleSystem.StartTurnSwitch();
     }
 
     public void SmallSmash()
@@ -81,7 +82,8 @@ public class MovePool : MonoBehaviour
         if (effectiveDamage < 0) effectiveDamage = 0;
         battleSystem.defender.currentHealth -= effectiveDamage;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Small Smash!");
+        battleSystem.StartTurnSwitch();
     }
 
     public void Attack()
@@ -94,7 +96,8 @@ public class MovePool : MonoBehaviour
         if (effectiveDamage < 0) effectiveDamage = 0;
         battleSystem.defender.currentHealth -= effectiveDamage;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Attack!");
+        battleSystem.StartTurnSwitch();
     }
 
     public void ShieldSmash()
@@ -107,7 +110,8 @@ public class MovePool : MonoBehaviour
         if (effectiveDamage < 0) effectiveDamage = 0;
         battleSystem.defender.currentHealth -= effectiveDamage;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Shield Smash!");
+        battleSystem.StartTurnSwitch();
     }
 
     public void BigAttack()
@@ -120,7 +124,8 @@ public class MovePool : MonoBehaviour
         if (effectiveDamage < 0) effectiveDamage = 0;
         battleSystem.defender.currentHealth -= effectiveDamage;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Big Attack!");
+        battleSystem.StartTurnSwitch();
     }
 
     public void BigSmash()
@@ -133,7 +138,8 @@ public class MovePool : MonoBehaviour
         if (effectiveDamage < 0) effectiveDamage = 0;
         battleSystem.defender.currentHealth -= effectiveDamage;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Big Smash!");
+        battleSystem.StartTurnSwitch();
 
     }
 
@@ -147,7 +153,8 @@ public class MovePool : MonoBehaviour
         if (effectiveDamage < 0) effectiveDamage = 0;
         battleSystem.defender.currentHealth -= effectiveDamage;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Colossal Attack!");
+        battleSystem.StartTurnSwitch();
     }
 
     public void ColossalSmash()
@@ -160,7 +167,8 @@ public class MovePool : MonoBehaviour
         if (effectiveDamage < 0) effectiveDamage = 0;
         battleSystem.defender.currentHealth -= effectiveDamage;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Colossal Smash!");
+        battleSystem.StartTurnSwitch();
 
     }
 
@@ -169,7 +177,8 @@ public class MovePool : MonoBehaviour
         battleSystem.ChangeAttacker();
         battleSystem.defender.DefenceDrop += 1;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Hungering Scream!");
+        battleSystem.StartTurnSwitch();
     }
 
     public void IntimidationTactic()
@@ -177,7 +186,8 @@ public class MovePool : MonoBehaviour
         battleSystem.ChangeAttacker();
         battleSystem.defender.AttackDrop += 1;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Intimidation Tactic!");
+        battleSystem.StartTurnSwitch();
     }
 
     public void HungeringBellow()
@@ -185,7 +195,8 @@ public class MovePool : MonoBehaviour
         battleSystem.ChangeAttacker();
         battleSystem.defender.DefenceDrop += 2;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Hungering Bellow!");
+        battleSystem.StartTurnSwitch();
     }
 
     public void Extortion()
@@ -193,7 +204,8 @@ public class MovePool : MonoBehaviour
         battleSystem.ChangeAttacker();
         battleSystem.defender.AttackDrop += 2;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Extortion!");
+        battleSystem.StartTurnSwitch();
     }
 
 
@@ -207,7 +219,7 @@ public class MovePool : MonoBehaviour
         if (effectiveDamage < 0) effectiveDamage = 0;
         battleSystem.defender.currentHealth -= effectiveDamage;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.SwitchTurn();
+        battleSystem.StartTurnSwitch();
     }
 
     public void AddMove(int _moveID, Button button)
@@ -321,51 +333,51 @@ public class MovePool : MonoBehaviour
         {
             case 0:
                 MovePool.instance.SmallAttack();
-                print("enemy did Small Attack");
+                //print("enemy did Small Attack");
                 break;
             case 1:
                 MovePool.instance.Attack();
-                print("enemy did Attack");
+                //print("enemy did Attack");
                 break;
             case 2:
                 MovePool.instance.BigAttack();
-                print("enemy did Big Attack");
+                //print("enemy did Big Attack");
                 break;
             case 3:
                 MovePool.instance.SmallSmash();
-                print("enemy did Small Smash");
+                //print("enemy did Small Smash");
                 break;
             case 4:
                 MovePool.instance.ShieldSmash();
-                print("enemy did Shield Smash");
+                //print("enemy did Shield Smash");
                 break;
             case 5:
                 MovePool.instance.BigSmash();
-                print("enemy did Big Smash");
+                //print("enemy did Big Smash");
                 break;
             case 6:
                 MovePool.instance.ColossalAttack();
-                print("enemy did Colossal Attack");
+                //print("enemy did Colossal Attack");
                 break;
             case 7:
                 MovePool.instance.ColossalSmash();
-                print("enemy did Colossal Smash");
+                //print("enemy did Colossal Smash");
                 break;
             case 8:
                 MovePool.instance.HungeringScream();
-                print("enemy did Hungering Scream");
+                //print("enemy did Hungering Scream");
                 break;
             case 9:
                 MovePool.instance.IntimidationTactic();
-                print("enemy did Intimidation Tactic");
+                //print("enemy did Intimidation Tactic");
                 break;
             case 10:
                 MovePool.instance.HungeringBellow();
-                print("enemy did Hungering Bellow");
+               // print("enemy did Hungering Bellow");
                 break;
             case 11:
                 MovePool.instance.Extortion();
-                print("enemy did Extortion");
+                //print("enemy did Extortion");
                 break;
             default:
                 break;
@@ -378,16 +390,16 @@ public class MovePool : MonoBehaviour
         int _attackIndex = Random.Range(0, 4);
         switch (battleSystem.enemyCreature.evolutionStage)
         {
-            case 1:
+            case 0:
                 SelectMove(tier1Moves[_attackIndex]);
                 break;
-            case 2:
+            case 1:
                 SelectMove(tier2Moves[_attackIndex]);
                 break;
-            case 3:
+            case 2:
                 SelectMove(tier3Moves[_attackIndex]);
                 break;
-            case 4:
+            case 3:
                 SelectMove(tier4Moves[_attackIndex]);
                 break;
             default:
