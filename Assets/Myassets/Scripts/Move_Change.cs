@@ -30,49 +30,49 @@ public class Move_Change : MonoBehaviour
         switch (_moveID)
         {
             case 0:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Small Attack";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Small Attack" + "\n" + "Cost: 60";
                 break;
             case 1:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Attack";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Attack" + "\n" + " Cost: 210";
                 break;
             case 2:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Big Attack";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Big Attack" + "\n" + "Cost: 420";
                 break;
             case 3:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Small Smash";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Small Smash" + "\n" + "Cost: 60";
                 break;
             case 4:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Shield Smash";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Shield Smash" + "\n" + "Cost: 210";
                 break;
             case 5:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Big Smash";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Big Smash" + "\n" + "Cost: 420";
                 break;
 
             case 6:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Colossal Attack";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Colossal Attack" + "\n" + "Cost: 640";
                 break;
 
             case 7:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Colossal Smash";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Colossal Smash" + "\n" + "Cost: 640";
                 break;
 
             case 8:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Hungering Scream";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Hungering Scream" + "\n" + "Cost: 150";
                 break;
             case 9:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Intimidation Tactic";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Intimidation Tactic" + "\n" + "Cost: 150";
                 break;
             case 10:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Hungering Bellow";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Hungering Bellow" + "\n" + "Cost: 380";
                 break;
             case 11:
-                button.GetComponentInChildren<TextMeshProUGUI>().text = "Extortion";
+                button.GetComponentInChildren<TextMeshProUGUI>().text = "Extortion" + "\n" + "Cost: 380";
                 break;
             default:
                 break;
         }
     }
-    
+
     public void ChangeMove(int _moveID, int _price)
     {
         if (Creature_Manager.instance.moves.Contains(_moveID) == false && Game_Manager.instance.GetMoney() >= _price)

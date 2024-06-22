@@ -8,6 +8,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] GameObject attackSpawn;
     [SerializeField] GameObject attackEffectPrefab;
     [SerializeField] float attackTravelSpeed = 1f;
+    [SerializeField] Animator characterAnimator;
+    [SerializeField] AnimationClip attackAnimation;
+    bool attackOnCooldown = false;
 
     Vector3 oldPosition;
 
@@ -19,9 +22,9 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && attackOnCooldown == false)
         {
-            Attack();
+            StartCoroutine(Attack());
         }
     }
 
@@ -30,14 +33,16 @@ public class PlayerAttack : MonoBehaviour
         oldPosition = transform.position;
     }
 
-    void Attack()
+    IEnumerator Attack()
     {
+        StartCoroutine(AnimateAttack());
         GameObject attack;
+        yield return new WaitForSeconds(0.2f);
         attack = Instantiate(attackEffectPrefab, attackSpawn.transform.position, Quaternion.identity);
         attack.GetComponent<Rigidbody2D>().velocity = new Vector2(attackTravelSpeed * DirectionAttack() + calculateVelocity().x, 0f);
         attack.transform.localScale = new Vector3(DirectionAttack(), 1f, 1f);
         print("attack velocity" + attack.GetComponent<Rigidbody2D>().velocity);
-        Destroy(attack, 0.2f);
+        Destroy(attack, 0.4f);
     }
 
     float DirectionAttack()
@@ -53,5 +58,14 @@ public class PlayerAttack : MonoBehaviour
     Vector3 calculateVelocity()
     {
         return (transform.position - oldPosition) / Time.deltaTime;
+    }
+
+    IEnumerator AnimateAttack()
+    {
+        characterAnimator.SetBool("Attack", true);
+        attackOnCooldown = true;
+        yield return new WaitForSeconds(attackAnimation.length);
+        characterAnimator.SetBool("Attack", false);
+        attackOnCooldown = false;
     }
 }

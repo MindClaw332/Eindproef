@@ -53,10 +53,9 @@ public class Creature_Manager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
         SetCurrentCreature(possibleCreatures[0]);
-        for (int i = 0; i < 3; i++)
-        {
-            moves.Add(i);
-        }
+        moves.Add(0);
+        moves.Add(3);
+        moves.Add(Random.Range(8, 10));
         //SetEnemy(FindEvolution(SelectEnemyCreature()));
     }
 
@@ -78,14 +77,14 @@ public class Creature_Manager : MonoBehaviour
             TrainingUiPopup(_randomStat, _lowerOrRaiseStat);
             AudioManager.instance.PlayRandomClip(audioClipsTraining);
         }
-        
+
         UpdateUi.Invoke();
     }
 
     // evolves the creature
     public void evolve()
     {
-        if (currentCreature.currentLevel % 4 == 0)
+        if (currentCreature.currentLevel % 3 == 0)
         {
             if (currentCreature.evolutionStage < 4) SetCurrentCreature(FindEvolution(DecideEvolution()));
             creatureImage.sprite = currentCreature.creatureSprite;

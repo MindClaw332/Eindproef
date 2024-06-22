@@ -7,11 +7,13 @@ public class Tree_Hittable : MonoBehaviour, I_Hittable
     [SerializeField] GameObject[] fruits;
     [SerializeField] int maxFruitAmount = 2;
     [SerializeField] float offset = 1f;
-
+    [SerializeField] Sprite sprite;
+    
     public void GetHit(int damage)
     {
         SpawnFruit(maxFruitAmount);
-        Destroy(gameObject);
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
     void SpawnFruit(int _maxFruitAmount)

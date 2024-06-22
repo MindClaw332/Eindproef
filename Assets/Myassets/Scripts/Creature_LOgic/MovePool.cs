@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 public class MovePool : MonoBehaviour
 {
@@ -13,6 +14,14 @@ public class MovePool : MonoBehaviour
     public Creature_SO defender;
     public static MovePool instance;
     [SerializeField] Button Testbutton;
+    public GameObject playerImage;
+    public GameObject enemyImage;
+    public GameObject playerPivot;
+    public GameObject enemyPivot;
+    Vector2 originalPosition;
+    Vector2 targetPosition;
+    GameObject moveSprite;
+    [SerializeField] float duration = 1f;
     public List<int> tier1Moves = new List<int>();
     public List<int> tier2Moves = new List<int>();
     public List<int> tier3Moves = new List<int>();
@@ -61,6 +70,8 @@ public class MovePool : MonoBehaviour
     public void SmallAttack()
     {
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryAttackAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
         int _damage = 3;
@@ -75,6 +86,8 @@ public class MovePool : MonoBehaviour
     public void SmallSmash()
     {
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int _damage = 3;
         int attackerAttack = CheckTemporaryDefenceAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
@@ -90,6 +103,8 @@ public class MovePool : MonoBehaviour
     {
         int _damage = 5;
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryAttackAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
         int effectiveDamage = (_damage * (attackerAttack / 3)) - defenderDefence / 3;
@@ -104,6 +119,8 @@ public class MovePool : MonoBehaviour
     {
         int _damage = 5;
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryAttackAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
         int effectiveDamage = (_damage * attackerAttack / 3) - defenderDefence / 3;
@@ -118,6 +135,8 @@ public class MovePool : MonoBehaviour
     {
         int _damage = 10;
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryAttackAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
         int effectiveDamage = (_damage * (attackerAttack / 3)) - defenderDefence / 3;
@@ -131,6 +150,8 @@ public class MovePool : MonoBehaviour
     public void BigSmash()
     {
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryDefenceAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
         int _damage = 10;
@@ -147,6 +168,8 @@ public class MovePool : MonoBehaviour
     {
         int _damage = 15;
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryAttackAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
         int effectiveDamage = (_damage * (attackerAttack / 3)) - defenderDefence / 3;
@@ -160,6 +183,8 @@ public class MovePool : MonoBehaviour
     public void ColossalSmash()
     {
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryDefenceAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
         int _damage = 15;
@@ -175,36 +200,44 @@ public class MovePool : MonoBehaviour
     public void HungeringScream()
     {
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         battleSystem.defender.DefenceDrop += 1;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Hungering Scream!");
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Hungering Scream! " + battleSystem.defender.creatureName + " is now at -" + battleSystem.defender.DefenceDrop + " Defence!");
         battleSystem.StartTurnSwitch();
     }
 
     public void IntimidationTactic()
     {
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         battleSystem.defender.AttackDrop += 1;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Intimidation Tactic!");
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Intimidation Tactic!" + battleSystem.defender.creatureName + " is now at -" + battleSystem.defender.AttackDrop + " Attack!");
         battleSystem.StartTurnSwitch();
     }
 
     public void HungeringBellow()
     {
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         battleSystem.defender.DefenceDrop += 2;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Hungering Bellow!");
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Hungering Bellow!" + battleSystem.defender.creatureName + " is now at -" + battleSystem.defender.DefenceDrop + " Defence!");
         battleSystem.StartTurnSwitch();
     }
 
     public void Extortion()
     {
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
+        if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         battleSystem.defender.AttackDrop += 2;
         battleSystem.combatUI.UpdateUI();
-        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Extortion!");
+        battleSystem.ShowText(battleSystem.attacker.creatureName + " used Extortion!" + battleSystem.defender.creatureName + " is now at -" + battleSystem.defender.AttackDrop + " Attack!");
         battleSystem.StartTurnSwitch();
     }
 
@@ -213,6 +246,7 @@ public class MovePool : MonoBehaviour
     {
         int _damage = 200;
         battleSystem.ChangeAttacker();
+        MoveCreatureSprite();
         int attackerAttack = CheckTemporaryAttackAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
         int effectiveDamage = (_damage * (attackerAttack / 3)) - defenderDefence / 3;
@@ -373,7 +407,7 @@ public class MovePool : MonoBehaviour
                 break;
             case 10:
                 MovePool.instance.HungeringBellow();
-               // print("enemy did Hungering Bellow");
+                // print("enemy did Hungering Bellow");
                 break;
             case 11:
                 MovePool.instance.Extortion();
@@ -390,22 +424,60 @@ public class MovePool : MonoBehaviour
         int _attackIndex = Random.Range(0, 4);
         switch (battleSystem.enemyCreature.evolutionStage)
         {
-            case 0:
+            case 1:
                 SelectMove(tier1Moves[_attackIndex]);
                 break;
-            case 1:
+            case 2:
                 SelectMove(tier2Moves[_attackIndex]);
                 break;
-            case 2:
+            case 3:
                 SelectMove(tier3Moves[_attackIndex]);
                 break;
-            case 3:
+            case 4:
                 SelectMove(tier4Moves[_attackIndex]);
                 break;
             default:
                 Debug.Log("no moves");
                 break;
         }
+    }
+
+    void MoveCreatureSprite()
+    {
+        GameObject targetToMove = null;
+        if (battleSystem.attacker == battleSystem.playerCreature)
+        {
+            Debug.Log("player sprite");
+            Debug.Log(playerImage.transform.position);
+            Vector2 originalPosition = playerImage.transform.position;
+            Vector2 targetPosition = playerPivot.transform.position;
+            Debug.Log("na casten");
+            Debug.Log(targetPosition);
+            Debug.Log(originalPosition);
+            targetToMove = playerImage;
+            targetToMove.transform.DOMove(targetPosition, duration).OnComplete(() =>
+{
+    // Move back to the original position
+    targetToMove.transform.DOMove(originalPosition, duration);
+});
+        }
+        else if (battleSystem.attacker == battleSystem.enemyCreature)
+        {
+            Debug.Log("enemy sprite");
+            Vector2 originalPosition = enemyImage.transform.position;
+            Vector2 targetPosition = enemyPivot.transform.position;
+            targetToMove = enemyImage;
+            targetToMove.transform.DOMove(targetPosition, duration).OnComplete(() =>
+{
+    // Move back to the original position
+    targetToMove.transform.DOMove(originalPosition, duration);
+});
+        }
+
+
+        Debug.Log("original position: " + originalPosition);
+        Debug.Log("target position: " + targetPosition);
+
     }
 
 }

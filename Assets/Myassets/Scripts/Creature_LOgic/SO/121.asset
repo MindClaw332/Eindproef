@@ -15,13 +15,15 @@ MonoBehaviour:
   creatureName: stress
   id: 121
   evolutionStage: 4
-  currentHealth: 5
-  maxHealth: 5
-  attack: 5
-  defence: 5
+  currentHealth: 145
+  maxHealth: 145
+  attack: 30
+  defence: 36
   stressLevel: 0
   maxStressLevel: 5
   sourFruitEaten: 0
   sweetFruitEaten: 0
   currentLevel: 1
-  creatureSprite: {fileID: 1599832577, guid: 6637e5e45594b764699e8e6dd4428bd3, type: 3}
+  AttackDrop: 0
+  DefenceDrop: 0
+  creatureSprite: {fileID: 1975522497, guid: 82754c2e937737d469db89e6880ddda3, type: 3}

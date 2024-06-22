@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22707b8648fce14893e4170584d5029, type: 3}
   m_Name: 021
   m_EditorClassIdentifier: 
-  creatureName: sweetdefence
+  creatureName: Swoopy
   id: 21
   evolutionStage: 3
-  currentHealth: 28
-  maxHealth: 28
+  currentHealth: 69
+  maxHealth: 69
   attack: 19
   defence: 23
   stressLevel: 0
@@ -24,4 +24,6 @@ MonoBehaviour:
   sourFruitEaten: 0
   sweetFruitEaten: 0
   currentLevel: 1
-  creatureSprite: {fileID: -606607134, guid: 6637e5e45594b764699e8e6dd4428bd3, type: 3}
+  AttackDrop: 0
+  DefenceDrop: 0
+  creatureSprite: {fileID: 466319513, guid: 82754c2e937737d469db89e6880ddda3, type: 3}

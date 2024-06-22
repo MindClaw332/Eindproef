@@ -148,3 +148,4 @@ MonoBehaviour:
   - {fileID: 7313132943643819251, guid: 862a1edff166e524fba87d57c2c987cd, type: 3}
   maxFruitAmount: 2
   offset: 1
+  sprite: {fileID: -6186013702909336546, guid: 47c25aecc2df50648b9387e0fafeb46d, type: 3}

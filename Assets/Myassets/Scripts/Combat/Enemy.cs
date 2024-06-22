@@ -97,7 +97,7 @@ public class Enemy : MonoBehaviour
 
     int CalculateStatChange()
     {
-        int _change = 2 * creatureManager.currentCreature.evolutionStage;
+        int _change = creatureManager.currentCreature.evolutionStage;
         return _change;
     }
 

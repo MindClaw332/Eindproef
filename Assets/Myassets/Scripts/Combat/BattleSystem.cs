@@ -9,7 +9,7 @@ public class BattleSystem : MonoBehaviour
 {
     public static BattleSystem instance;
     [SerializeField] Enemy enemy;
-    Creature_SO playerCreature;
+    public Creature_SO playerCreature;
     public Creature_SO enemyCreature;
     public Creature_SO attacker;
     public Creature_SO defender;
@@ -18,7 +18,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] TextMeshProUGUI battleText;
     public UnityEvent UpdateUi;
     public Combat_UI combatUI;
-    [SerializeField] int moneyAmount = 50;
+    [SerializeField] int moneyAmount = 80;
 
     void Awake()
     {
@@ -78,7 +78,7 @@ public class BattleSystem : MonoBehaviour
             yield return new WaitForSeconds(2f);
             int _winMoney = moneyAmount + Creature_Manager.instance.currentCreature.evolutionStage * 10;
             Game_Manager.instance.AddMoney(_winMoney);
-            battleText.SetText("You earned " + _winMoney + " coins");
+            battleText.SetText("You earned " + _winMoney + " [%$#@*(^&&^%");
             yield return new WaitForSeconds(2f);
             Creature_Manager.instance.LevelUp();
             Creature_Manager.instance.ResetStress();
@@ -87,14 +87,15 @@ public class BattleSystem : MonoBehaviour
             Creature_Manager.instance.currentCreature.AttackDrop = 0;
             battleText.SetText("You leveled up. Returning to overworld");
             yield return new WaitForSeconds(3f);
-            Scene_Manager.instance.LoadScene(0);
+            Scene_Manager.instance.LoadScene(1);
         }
         else
         {
             battleText.SetText("You lost");
             yield return new WaitForSeconds(2f);
-            battleText.SetText("Returning to Main Menu, better luck next time!");
+            battleText.SetText("The game will delete itself now, better luck next time!");
             yield return new WaitForSeconds(5f);
+            Application.Quit();
         }
     }
 
@@ -115,6 +116,7 @@ public class BattleSystem : MonoBehaviour
 
     public void ChangeAttacker()
     {
+        Debug.Log("changing attacker");
         switch (State)
         {
             case battleState.PLAYERTURN:
@@ -125,7 +127,7 @@ public class BattleSystem : MonoBehaviour
             case battleState.ENEMYTURN:
                 attacker = enemyCreature;
                 defender = playerCreature;
-                TurnOnButtons();
+                //TurnOnButtons();
                 break;
 
         }
@@ -133,6 +135,7 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator SwitchTurn()
     {
+        Debug.Log("Switching turn");
         yield return new WaitForSeconds(2f);
         if (defender.currentHealth > 0)
         {
@@ -141,10 +144,12 @@ public class BattleSystem : MonoBehaviour
                 case battleState.PLAYERTURN:
                     State = battleState.ENEMYTURN;
                     StartCoroutine(EnemyTurn());
+                    TurnOffButtons();
                     break;
                 case battleState.ENEMYTURN:
                     State = battleState.PLAYERTURN;
                     StartCoroutine(PlayerTurn());
+                    TurnOnButtons();
                     break;
             }
         }
@@ -163,8 +168,9 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    void TurnOffButtons()
+    public void TurnOffButtons()
     {
+        Debug.Log("turning off buttons");
         for (int i = 0; i < combatUI.playerButtons.Length; i++)
         {
             combatUI.playerButtons[i].GetComponent<Button_Text_movement>().enabled = false;
@@ -174,6 +180,7 @@ public class BattleSystem : MonoBehaviour
 
     void TurnOnButtons()
     {
+        Debug.Log("turning on buttons");
         for (int i = 0; i < combatUI.playerButtons.Length; i++)
         {
             combatUI.playerButtons[i].GetComponent<Button_Text_movement>().enabled = true;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -9,6 +10,7 @@ public class Characters_movement : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] float speed = 5f;
+    [SerializeField] Animator characterAnimator;
     //[SerializeField] Game_Manager gm;
 
     void Awake()
@@ -33,6 +35,7 @@ public class Characters_movement : MonoBehaviour
     void FixedUpdate()
     {
         MoveCharacter(GetMovement(speed));
+        AnimatorSet();
         ChangeDirection();
     }
 
@@ -43,7 +46,7 @@ public class Characters_movement : MonoBehaviour
 
     Vector2 GetMovement(float _speed)
     {
-        Vector2 _movement = new Vector2(Input.GetAxis("Horizontal") * _speed, Input.GetAxis("Vertical") * _speed) + rb.position;
+        Vector2 _movement = new Vector2(Input.GetAxis("Horizontal") * _speed, Input.GetAxis("Vertical") * _speed) + rb.position; ;
         return _movement;
     }
 
@@ -58,6 +61,22 @@ public class Characters_movement : MonoBehaviour
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
             Game_Manager.instance.SetFlipped(true);
+        }
+    }
+
+    public void AnimatorSet()
+    {
+        Vector2 _movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (_movement != Vector2.zero)
+        {
+            if (Mathf.Abs(_movement.y) > 0)
+            {
+                characterAnimator.SetFloat("Speed", Mathf.Abs(_movement.y));
+            }
+            else
+            {
+                characterAnimator.SetFloat("Speed", Mathf.Abs(_movement.x));
+            }
         }
     }
 

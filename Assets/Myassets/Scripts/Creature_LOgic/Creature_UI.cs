@@ -16,6 +16,7 @@ public class Creature_UI : MonoBehaviour
     [SerializeField] TextMeshProUGUI hpIconText;
     [SerializeField] TextMeshProUGUI AttackIconText;
     [SerializeField] TextMeshProUGUI defenseIconText;
+    [SerializeField] TextMeshProUGUI stressText;
 
     void Awake()
     {
@@ -48,7 +49,7 @@ public class Creature_UI : MonoBehaviour
         //creatureHp.text = Creature_Manager.instance.currentCreature.currentHealth.ToString() + "/" + Creature_Manager.instance.currentCreature.maxHealth.ToString();
         creatureLevel.text = "lv. " + Creature_Manager.instance.currentCreature.currentLevel.ToString();
         creatureImage.sprite = Creature_Manager.instance.currentCreature.creatureSprite;
-        moneyText.text = Game_Manager.instance.GetMoney().ToString();
+        moneyText.text = "X " + Game_Manager.instance.GetMoney().ToString();
     }
 
     public void UpdateStats()
@@ -56,5 +57,7 @@ public class Creature_UI : MonoBehaviour
         hpIconText.text = Creature_Manager.instance.currentCreature.currentHealth.ToString() + "/" + Creature_Manager.instance.currentCreature.maxHealth.ToString();
         AttackIconText.text = Creature_Manager.instance.currentCreature.attack.ToString();
         defenseIconText.text = Creature_Manager.instance.currentCreature.defence.ToString();
+        stressText.text = "stress: " + "\n" + Creature_Manager.instance.currentCreature.stressLevel.ToString() + "/ 5";
+
     }
 }

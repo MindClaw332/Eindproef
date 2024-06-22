@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22707b8648fce14893e4170584d5029, type: 3}
   m_Name: 111
   m_EditorClassIdentifier: 
-  creatureName: stress
+  creatureName: GoldDeath
   id: 111
   evolutionStage: 4
   currentHealth: 5
@@ -24,4 +24,6 @@ MonoBehaviour:
   sourFruitEaten: 0
   sweetFruitEaten: 0
   currentLevel: 1
-  creatureSprite: {fileID: 996976117, guid: 6637e5e45594b764699e8e6dd4428bd3, type: 3}
+  AttackDrop: 0
+  DefenceDrop: 0
+  creatureSprite: {fileID: 937764953, guid: 82754c2e937737d469db89e6880ddda3, type: 3}

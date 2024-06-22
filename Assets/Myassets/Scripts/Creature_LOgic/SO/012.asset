@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22707b8648fce14893e4170584d5029, type: 3}
   m_Name: 012
   m_EditorClassIdentifier: 
-  creatureName: sourattack
+  creatureName: Bulbur
   id: 12
   evolutionStage: 3
-  currentHealth: 22
-  maxHealth: 22
+  currentHealth: 62
+  maxHealth: 62
   attack: 26
   defence: 16
   stressLevel: 0
@@ -24,4 +24,6 @@ MonoBehaviour:
   sourFruitEaten: 0
   sweetFruitEaten: 0
   currentLevel: 1
-  creatureSprite: {fileID: -1901623329, guid: 6637e5e45594b764699e8e6dd4428bd3, type: 3}
+  AttackDrop: 0
+  DefenceDrop: 0
+  creatureSprite: {fileID: 27771861, guid: 82754c2e937737d469db89e6880ddda3, type: 3}
