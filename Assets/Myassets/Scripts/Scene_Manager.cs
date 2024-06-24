@@ -31,4 +31,9 @@ public class Scene_Manager : MonoBehaviour
     {
         creatureUI.SetActive(false);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

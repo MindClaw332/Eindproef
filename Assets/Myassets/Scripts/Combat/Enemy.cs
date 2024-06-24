@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public Creature_Manager creatureManager;
     public Creature_SO enemyCreature;
     public Combat_UI combatUI;
+    [SerializeField] Creature_SO endBoss;
     [SerializeField] UnityEvent OnEnemyInit;
 
     void Awake()
@@ -17,7 +18,8 @@ public class Enemy : MonoBehaviour
 
         creatureManager = Creature_Manager.instance;
         if (creatureManager == null) Debug.LogError("Creature manager not found");
-        SetEnemy(creatureManager.FindEvolution(SelectEnemyCreature()));
+        if (creatureManager.currentCreature.evolutionStage != 4) SetEnemy(creatureManager.FindEvolution(SelectEnemyCreature()));
+        else SetEnemy(endBoss);
         RaiseDifficulty();
     }
 

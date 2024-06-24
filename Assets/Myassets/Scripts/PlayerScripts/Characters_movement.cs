@@ -11,6 +11,7 @@ public class Characters_movement : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] float speed = 5f;
     [SerializeField] Animator characterAnimator;
+    [SerializeField] AudioSource audioSource;
     //[SerializeField] Game_Manager gm;
 
     void Awake()
@@ -41,7 +42,14 @@ public class Characters_movement : MonoBehaviour
 
     void MoveCharacter(Vector2 _movement)
     {
-        if (_movement != Vector2.zero) rb.MovePosition(_movement);
+        if (_movement - rb.position != Vector2.zero)
+        {
+            Debug.Log("moving");
+            rb.MovePosition(_movement);
+            audioSource.gameObject.SetActive(true);
+        }
+        else
+        {audioSource.gameObject.SetActive(false); Debug.Log("no movement"); }
     }
 
     Vector2 GetMovement(float _speed)

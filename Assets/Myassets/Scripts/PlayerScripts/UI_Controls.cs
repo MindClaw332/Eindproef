@@ -20,7 +20,7 @@ public class UI_Controls : MonoBehaviour
     void OnOpenUI()
     {
         Debug.Log("Opening UI");
-        if (SceneManager.GetActiveScene().buildIndex != 2)
+        if (SceneManager.GetActiveScene().buildIndex == 2)
         {
             creatureUI.SetActive(!creatureUI.activeSelf);
             playerAttackScript = FindObjectOfType<PlayerAttack>();

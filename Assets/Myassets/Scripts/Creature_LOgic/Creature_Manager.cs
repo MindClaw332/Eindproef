@@ -29,6 +29,7 @@ public class Creature_Manager : MonoBehaviour
     [SerializeField] AudioClip[] audioClipsTraining;
     [SerializeField] AudioClip audioClipDown;
     [SerializeField] AudioClip audioClipUp;
+    [SerializeField] Creature_SO testCreature;
 
 
     // instantiates a scriptable object for the current creature

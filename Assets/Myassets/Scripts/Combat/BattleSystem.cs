@@ -49,12 +49,13 @@ public class BattleSystem : MonoBehaviour
     {
         battleText.SetText("your opponent will be: " + enemyCreature.creatureName);
         yield return new WaitForSeconds(2f);
-        //State = battleState.PLAYERTURN;
+        State = battleState.PLAYERTURN;
         StartCoroutine(PlayerTurn());
     }
 
     IEnumerator PlayerTurn()
     {
+        yield return new WaitForSeconds(1f);
         battleText.SetText("Your turn");
         yield return new WaitForSeconds(2f);
         battleText.SetText("Choose your next move: ");
@@ -72,11 +73,11 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EndBattle()
     {
         TurnOffButtons();
-        if (State == battleState.WIN)
+        if (State == battleState.WIN && enemyCreature.isBoss == false)
         {
             battleText.SetText("You won");
             yield return new WaitForSeconds(2f);
-            int _winMoney = moneyAmount + Creature_Manager.instance.currentCreature.evolutionStage * 10;
+            int _winMoney = moneyAmount + Creature_Manager.instance.currentCreature.evolutionStage * 20;
             Game_Manager.instance.AddMoney(_winMoney);
             battleText.SetText("You earned " + _winMoney + " [%$#@*(^&&^%");
             yield return new WaitForSeconds(2f);
@@ -87,8 +88,15 @@ public class BattleSystem : MonoBehaviour
             Creature_Manager.instance.currentCreature.AttackDrop = 0;
             battleText.SetText("You leveled up. Returning to overworld");
             yield return new WaitForSeconds(3f);
-            Scene_Manager.instance.LoadScene(1);
+            Scene_Manager.instance.LoadScene(2);
         }
+        else if (State == battleState.WIN && enemyCreature.isBoss == true)
+        {
+            battleText.SetText("You won???");
+            yield return new WaitForSeconds(2f);
+            Scene_Manager.instance.LoadScene(4);
+        }
+
         else
         {
             battleText.SetText("You lost");
@@ -101,6 +109,8 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        TurnOffButtons();
+        yield return new WaitForSeconds(1f);
         battleText.SetText("Enemy's turn");
         yield return new WaitForSeconds(2f);
         MovePool.instance.EnemyAttack();
@@ -116,13 +126,15 @@ public class BattleSystem : MonoBehaviour
 
     public void ChangeAttacker()
     {
+        TurnOffButtons();
         Debug.Log("changing attacker");
         switch (State)
         {
             case battleState.PLAYERTURN:
+                TurnOffButtons();
                 attacker = playerCreature;
                 defender = enemyCreature;
-                TurnOffButtons();
+                //TurnOffButtons();
                 break;
             case battleState.ENEMYTURN:
                 attacker = enemyCreature;
@@ -135,21 +147,23 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator SwitchTurn()
     {
+        TurnOffButtons();
         Debug.Log("Switching turn");
-        yield return new WaitForSeconds(2f);
+
         if (defender.currentHealth > 0)
         {
             switch (State)
             {
                 case battleState.PLAYERTURN:
+
                     State = battleState.ENEMYTURN;
                     StartCoroutine(EnemyTurn());
-                    TurnOffButtons();
+
                     break;
                 case battleState.ENEMYTURN:
                     State = battleState.PLAYERTURN;
                     StartCoroutine(PlayerTurn());
-                    TurnOnButtons();
+                    //TurnOnButtons();
                     break;
             }
         }
@@ -166,6 +180,7 @@ public class BattleSystem : MonoBehaviour
             }
             StartCoroutine(EndBattle());
         }
+        yield return new WaitForSeconds(0.5f);
     }
 
     public void TurnOffButtons()

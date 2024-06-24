@@ -24,6 +24,7 @@ public class Creature_SO : ScriptableObject
 
     public int AttackDrop = 0;
     public int DefenceDrop = 0; 
+    public bool isBoss = false;
 
     public Sprite creatureSprite;
 }

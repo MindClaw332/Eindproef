@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] Animator characterAnimator;
     [SerializeField] AnimationClip attackAnimation;
     bool attackOnCooldown = false;
+    [SerializeField] AudioClip attackSound;
 
     Vector3 oldPosition;
 
@@ -36,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator Attack()
     {
         StartCoroutine(AnimateAttack());
+        AudioManager.instance.PlaySound(attackSound);
         GameObject attack;
         yield return new WaitForSeconds(0.2f);
         attack = Instantiate(attackEffectPrefab, attackSpawn.transform.position, Quaternion.identity);
@@ -64,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
     {
         characterAnimator.SetBool("Attack", true);
         attackOnCooldown = true;
-        yield return new WaitForSeconds(attackAnimation.length);
+        yield return new WaitForSeconds(0.5f);
         characterAnimator.SetBool("Attack", false);
         attackOnCooldown = false;
     }

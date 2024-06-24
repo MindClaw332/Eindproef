@@ -10,7 +10,7 @@ public class Change_scene : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Scene_Manager.instance.TurnOffUI();
-            Scene_Manager.instance.LoadScene(1);
+            Scene_Manager.instance.LoadScene(3);
         }
     }
 }

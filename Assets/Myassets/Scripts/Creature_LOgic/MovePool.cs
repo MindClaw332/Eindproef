@@ -28,6 +28,8 @@ public class MovePool : MonoBehaviour
     public List<int> tier4Moves = new List<int>();
     public List<int> tier5Moves = new List<int>();
     public List<int> tier6Moves = new List<int>();
+    [SerializeField] AudioClip attackSound;
+    [SerializeField] AudioClip screamSound;
 
     void Awake()
     {
@@ -71,6 +73,7 @@ public class MovePool : MonoBehaviour
     {
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(attackSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryAttackAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
@@ -87,6 +90,7 @@ public class MovePool : MonoBehaviour
     {
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(attackSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int _damage = 3;
         int attackerAttack = CheckTemporaryDefenceAttacker();
@@ -104,6 +108,7 @@ public class MovePool : MonoBehaviour
         int _damage = 5;
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(attackSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryAttackAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
@@ -120,6 +125,7 @@ public class MovePool : MonoBehaviour
         int _damage = 5;
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(attackSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryAttackAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
@@ -136,6 +142,7 @@ public class MovePool : MonoBehaviour
         int _damage = 10;
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(attackSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryAttackAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
@@ -151,6 +158,7 @@ public class MovePool : MonoBehaviour
     {
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(attackSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryDefenceAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
@@ -169,6 +177,7 @@ public class MovePool : MonoBehaviour
         int _damage = 15;
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(attackSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryAttackAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
@@ -184,6 +193,7 @@ public class MovePool : MonoBehaviour
     {
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(attackSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         int attackerAttack = CheckTemporaryDefenceAttacker();
         int defenderDefence = CheckTemporaryDefenceDefender();
@@ -201,6 +211,7 @@ public class MovePool : MonoBehaviour
     {
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(screamSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         battleSystem.defender.DefenceDrop += 1;
         battleSystem.combatUI.UpdateUI();
@@ -212,6 +223,7 @@ public class MovePool : MonoBehaviour
     {
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(screamSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         battleSystem.defender.AttackDrop += 1;
         battleSystem.combatUI.UpdateUI();
@@ -223,6 +235,7 @@ public class MovePool : MonoBehaviour
     {
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(screamSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         battleSystem.defender.DefenceDrop += 2;
         battleSystem.combatUI.UpdateUI();
@@ -234,6 +247,7 @@ public class MovePool : MonoBehaviour
     {
         battleSystem.ChangeAttacker();
         MoveCreatureSprite();
+        AudioManager.instance.PlaySound(screamSound);
         if (battleSystem.attacker == battleSystem.playerCreature) battleSystem.TurnOffButtons();
         battleSystem.defender.AttackDrop += 2;
         battleSystem.combatUI.UpdateUI();
@@ -456,10 +470,11 @@ public class MovePool : MonoBehaviour
             Debug.Log(originalPosition);
             targetToMove = playerImage;
             targetToMove.transform.DOMove(targetPosition, duration).OnComplete(() =>
-{
-    // Move back to the original position
-    targetToMove.transform.DOMove(originalPosition, duration);
-});
+            {
+                // Move back to the original position
+                targetToMove.transform.DOMove(originalPosition, duration);
+
+            });
         }
         else if (battleSystem.attacker == battleSystem.enemyCreature)
         {
@@ -468,10 +483,10 @@ public class MovePool : MonoBehaviour
             Vector2 targetPosition = enemyPivot.transform.position;
             targetToMove = enemyImage;
             targetToMove.transform.DOMove(targetPosition, duration).OnComplete(() =>
-{
-    // Move back to the original position
-    targetToMove.transform.DOMove(originalPosition, duration);
-});
+        {
+            // Move back to the original position
+            targetToMove.transform.DOMove(originalPosition, duration);
+        });
         }
 
 
